@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUURO — Your Visual Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --gold: #c9a84c;
+    --gold-dim: rgba(201, 168, 76, 0.15);
+    --white-dim: rgba(245, 242, 237, 0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @font-face {
+    font-family: 'Intro';
+    src: local('Intro'), local('IntroRegular');
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--black);
+    color: var(--white);
+    overflow: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+
+  /* Noise grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+  }
+
+  /* Ambient light */
+  .ambient {
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+    pointer-events: none;
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+  }
+
+  /* Thin horizontal lines — architectural */
+  .lines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+  .lines::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.12) 30%, rgba(201,168,76,0.12) 70%, transparent);
+  }
+
+  /* Main layout */
+  .stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* Top bar */
+  .top-bar {
+    position: fixed;
+    top: 48px;
+    left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .top-location {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(245,242,237,0.35);
+    text-transform: uppercase;
+  }
+
+  .top-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(245,242,237,0.35);
+    text-transform: uppercase;
+  }
+
+  /* Center content */
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Gold rule above */
+  .rule-top {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    animation-delay: 0.8s;
+  }
+
+  /* MUURO wordmark */
+  .wordmark {
+    font-family: 'Intro', 'Futura', 'Century Gothic', sans-serif;
+    font-size: clamp(72px, 12vw, 140px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--white);
+    line-height: 1;
+    position: relative;
+    opacity: 0;
+    animation: revealWord 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.5s;
+  }
+
+  .wordmark::after {
+    content: 'MUURO';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.15) 60%, transparent 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 4s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  /* Thin gold divider */
+  .divider {
+    width: 240px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 28px 0;
+    opacity: 0;
+    animation: expandLine 1s ease forwards;
+    animation-delay: 1.2s;
+  }
+
+  /* Tagline */
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(13px, 1.8vw, 17px);
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 1.4s;
+  }
+
+  /* Coming soon */
+  .coming {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+    animation-delay: 1.8s;
+  }
+
+  .coming-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: rgba(245,242,237,0.3);
+    text-transform: uppercase;
+  }
+
+  /* Animated dots */
+  .dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .dot:nth-child(2) { animation-delay: 0.3s; }
+  .dot:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
+  /* Rule bottom */
+  .rule-bottom {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to top, transparent, var(--gold));
+    margin-top: 48px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    animation-delay: 0.8s;
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: fixed;
+    bottom: 48px;
+    left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards;
+    animation-delay: 2s;
+  }
+
+  .bottom-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(245,242,237,0.25);
+    text-transform: uppercase;
+  }
+
+  .bottom-right {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: rgba(245,242,237,0.25);
+    text-transform: uppercase;
+  }
+
+  /* Corner accents */
+  .corner {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 1s;
+  }
+  .corner-tl { top: 32px; left: 32px; border-top: 1px solid rgba(201,168,76,0.3); border-left: 1px solid rgba(201,168,76,0.3); }
+  .corner-tr { top: 32px; right: 32px; border-top: 1px solid rgba(201,168,76,0.3); border-right: 1px solid rgba(201,168,76,0.3); }
+  .corner-bl { bottom: 32px; left: 32px; border-bottom: 1px solid rgba(201,168,76,0.3); border-left: 1px solid rgba(201,168,76,0.3); }
+  .corner-br { bottom: 32px; right: 32px; border-bottom: 1px solid rgba(201,168,76,0.3); border-right: 1px solid rgba(201,168,76,0.3); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes revealWord {
+    from { opacity: 0; transform: translateY(30px) scaleX(0.96); letter-spacing: 0.08em; }
+    to { opacity: 1; transform: translateY(0) scaleX(1); letter-spacing: 0.18em; }
+  }
+
+  @keyframes expandLine {
+    from { opacity: 0; width: 0; }
+    to { opacity: 1; width: 240px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .top-bar, .bottom-bar { padding: 0 28px; }
+    .corner-tl { top: 20px; left: 20px; }
+    .corner-tr { top: 20px; right: 20px; }
+    .corner-bl { bottom: 20px; left: 20px; }
+    .corner-br { bottom: 20px; right: 20px; }
+    .top-bar { top: 32px; }
+    .bottom-bar { bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="ambient"></div>
+<div class="lines"></div>
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="top-bar">
+  <span class="top-location">Berlin, DE</span>
+  <span class="top-year">Est. 2025</span>
+</div>
+
+<div class="stage">
+  <div class="center">
+    <div class="rule-top"></div>
+    <div class="wordmark">MUURO</div>
+    <div class="divider"></div>
+    <div class="tagline">Your Visual Capital</div>
+    <div class="coming">
+      <span class="coming-text">Something is coming</span>
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+    <div class="rule-bottom"></div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <span class="bottom-left">muuro.co</span>
+  <span class="bottom-right">Posters &amp; Frames</span>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+</script>
+</body>
+</html>
