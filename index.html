@@ -64,7 +64,7 @@
     position: fixed;
     inset: 0;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto;
     padding: 40px 56px;
   }
 
@@ -76,16 +76,13 @@
     color: var(--stone-dim);
   }
 
-  .top,
   .bottom {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     opacity: 0;
+    animation: fadeIn 1.2s ease 1.8s forwards;
   }
-
-  .top { animation: fadeIn 1.2s ease 0.2s forwards; }
-  .bottom { animation: fadeIn 1.2s ease 1.5s forwards; }
 
   .stage {
     display: flex;
@@ -126,6 +123,61 @@
     animation: fadeIn 1.2s ease 1.2s forwards;
   }
 
+  .notice {
+    margin-top: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 1.5s forwards;
+  }
+
+  .notice-text {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-indent: 0.32em;
+    text-transform: uppercase;
+    color: var(--stone-dim);
+  }
+
+  .notice-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    text-decoration: none;
+    padding: 13px 22px 13px 26px;
+    border: 1px solid var(--stone-faint);
+    border-radius: 999px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .notice-link:hover,
+  .notice-link:focus-visible {
+    border-color: var(--stone-dim);
+    background-color: rgba(168, 160, 154, 0.05);
+    outline: none;
+  }
+
+  .notice-arrow {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .notice-link:hover .notice-arrow,
+  .notice-link:focus-visible .notice-arrow {
+    transform: translate(2px, -2px);
+  }
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -147,10 +199,14 @@
     .tagline { font-size: 10px; letter-spacing: 0.36em; text-indent: 0.36em; }
     .label { font-size: 10px; letter-spacing: 0.2em; }
     .rule { margin: 26px 0 22px; width: 44px; }
+    .notice { margin-top: 56px; gap: 14px; }
+    .notice-text { font-size: 9px; letter-spacing: 0.26em; text-indent: 0.26em; }
+    .notice-link { font-size: 11px; padding: 12px 18px 12px 22px; letter-spacing: 0.18em; text-indent: 0.18em; gap: 10px; }
+    .notice-arrow { font-size: 12px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .top, .bottom, .wordmark, .rule, .tagline {
+    .bottom, .wordmark, .rule, .tagline, .notice {
       animation: none;
       opacity: 1;
       transform: none;
@@ -161,19 +217,27 @@
 <body>
 
 <div class="frame">
-  <header class="top">
-    <span class="label">Berlin · DE</span>
-    <span class="label">Est. 2025</span>
-  </header>
-
   <main class="stage">
     <h1 class="wordmark">MUURO</h1>
     <div class="rule" aria-hidden="true"></div>
     <p class="tagline">Your Visual Capital</p>
+
+    <div class="notice">
+      <p class="notice-text">Site in development — orders via Instagram</p>
+      <a
+        class="notice-link"
+        href="https://www.instagram.com/muuro.co/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Order via Instagram @muuro.co, opens in new tab"
+      >
+        <span>@muuro.co</span>
+        <span class="notice-arrow" aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
   </main>
 
   <footer class="bottom">
-    <span class="label">Coming soon</span>
     <span class="label">muuro.co</span>
   </footer>
 </div>
