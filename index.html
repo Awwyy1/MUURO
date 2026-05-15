@@ -64,7 +64,7 @@
     position: fixed;
     inset: 0;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto;
     padding: 40px 56px;
   }
 
@@ -76,15 +76,13 @@
     color: var(--stone-dim);
   }
 
-  .top,
   .bottom {
     display: flex;
     align-items: center;
+    justify-content: center;
     opacity: 0;
+    animation: fadeIn 1.2s ease 1.8s forwards;
   }
-
-  .top { justify-content: flex-end; animation: fadeIn 1.2s ease 0.2s forwards; }
-  .bottom { justify-content: center; animation: fadeIn 1.2s ease 1.8s forwards; }
 
   .stage {
     display: flex;
@@ -208,7 +206,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .top, .bottom, .wordmark, .rule, .tagline, .notice {
+    .bottom, .wordmark, .rule, .tagline, .notice {
       animation: none;
       opacity: 1;
       transform: none;
@@ -219,10 +217,6 @@
 <body>
 
 <div class="frame">
-  <header class="top">
-    <span class="label">Est. 2025</span>
-  </header>
-
   <main class="stage">
     <h1 class="wordmark">MUURO</h1>
     <div class="rule" aria-hidden="true"></div>
