@@ -12,6 +12,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Studio",
     links: [
       { label: "Manifesto", href: "/manifesto" },
+      { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
       { label: "Instagram", href: "https://www.instagram.com/muuro.co/" },
     ],

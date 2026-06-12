@@ -3,10 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import FramedArtwork from "./FramedArtwork";
 
+const SLOT_COUNT = 5;
+
 /**
  * Swipeable product gallery. Renders the edition's photography in order.
- * Drops back to the framed SVG when no JPGs have been uploaded yet, so
- * pages keep working before real photography arrives.
+ * Falls back to five identical framed placeholders when no JPGs have been
+ * uploaded yet, so the carousel structure is visible from day one and the
+ * operator can see exactly which slot each upload will fill.
  */
 export default function Gallery({
   images,
@@ -17,7 +20,14 @@ export default function Gallery({
   title: string;
   fallback?: string;
 }) {
-  const slides = images.length > 0 ? images : fallback ? [fallback] : [];
+  const isFallback = images.length === 0;
+  const slides =
+    images.length > 0
+      ? images
+      : fallback
+        ? (Array<string>(SLOT_COUNT).fill(fallback) as string[])
+        : [];
+
   const [index, setIndex] = useState(0);
   const touchStart = useRef<number | null>(null);
 
@@ -50,8 +60,6 @@ export default function Gallery({
     go(delta < 0 ? index + 1 : index - 1);
   }
 
-  const isFallback = images.length === 0;
-
   if (slides.length === 0) return null;
 
   return (
@@ -69,10 +77,20 @@ export default function Gallery({
             <img
               src={slides[index]}
               alt={`${title}, view ${index + 1} of ${slides.length}`}
-              className="block h-auto w-full"
+              className="block aspect-[4/5] h-auto w-full object-cover"
             />
           )}
         </div>
+
+        {/* Slot badge tells the operator which JPG number lives in each slide
+            while real photography is still missing. */}
+        {isFallback && (
+          <div className="pointer-events-none absolute right-5 top-5 border border-edge bg-paper/85 px-2.5 py-1 backdrop-blur-sm">
+            <span className="label text-stone">
+              Photo {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+            </span>
+          </div>
+        )}
 
         {slides.length > 1 && (
           <>
@@ -116,12 +134,12 @@ export default function Gallery({
         <div className="grid grid-cols-5 gap-2">
           {slides.map((src, i) => (
             <button
-              key={src + i}
+              key={i}
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Show image ${i + 1}`}
               aria-current={i === index}
-              className={`cursor-pointer border bg-wall p-1.5 transition-colors ${
+              className={`relative flex cursor-pointer flex-col items-stretch border bg-wall p-1.5 transition-colors ${
                 i === index ? "border-ink" : "border-transparent hover:border-edge"
               }`}
             >
@@ -131,6 +149,11 @@ export default function Gallery({
                 alt=""
                 className="block aspect-[4/5] w-full object-cover"
               />
+              {isFallback && (
+                <span className="label mt-1 block text-center text-[8px] tracking-[0.18em]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              )}
             </button>
           ))}
         </div>

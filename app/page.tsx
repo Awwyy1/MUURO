@@ -14,13 +14,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Desktop brand ribbon. Mobile shows the slogan inside the nav bar. */}
-      <div className="hidden border-b border-hairline md:block">
-        <p className="py-3 text-center text-[10px] font-medium uppercase tracking-[0.42em] text-stone [text-indent:0.42em]">
-          Your Visual Capital
-        </p>
-      </div>
-
       <section className="grid min-h-[540px] lg:grid-cols-2">
         <div className="flex items-center justify-center bg-wall px-10 py-16 lg:py-20">
           {dropHasPhotos ? (
