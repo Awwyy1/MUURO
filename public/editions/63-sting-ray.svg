@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#15161d"/>
+  <text x="300" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="250" font-weight="500" fill="#c8a44e">63</text>
+  <path d="M150 520 Q170 480 240 472 L280 470 Q300 452 340 452 Q380 452 396 470 L440 474 Q500 482 460 520 Q420 540 300 540 Q190 540 150 520 Z" fill="#0b0c11" stroke="#2a2c38" stroke-width="2"/>
+  <ellipse cx="225" cy="532" rx="26" ry="10" fill="#1f212b"/>
+  <ellipse cx="385" cy="532" rx="26" ry="10" fill="#1f212b"/>
+  <text x="300" y="640" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="30" letter-spacing="16" fill="#c8a44e">CORVETTE</text>
+  <text x="300" y="678" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="9" fill="#8f7a3e">STING RAY</text>
+</svg>

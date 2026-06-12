@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#efe8d9"/>
+  <text x="64" y="200" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-style="italic" fill="#161616">Hast du</text>
+  <text x="64" y="276" font-family="Georgia, 'Times New Roman', serif" font-size="56" font-style="italic" fill="#161616">gekackt?</text>
+
+  <!-- Giraffe -->
+  <polygon points="436,840 466,265 512,258 532,840" fill="#161616"/>
+  <circle cx="484" cy="222" r="46" fill="#161616"/>
+  <line x1="466" y1="184" x2="442" y2="128" stroke="#161616" stroke-width="9" stroke-linecap="round"/>
+  <line x1="504" y1="182" x2="530" y2="126" stroke="#161616" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="442" cy="120" r="11" fill="#161616"/>
+  <circle cx="531" cy="118" r="11" fill="#161616"/>
+  <circle cx="466" cy="214" r="17" fill="#efe8d9"/>
+  <circle cx="502" cy="212" r="17" fill="#efe8d9"/>
+  <circle cx="468" cy="216" r="4.5" fill="#161616"/>
+  <circle cx="504" cy="214" r="4.5" fill="#161616"/>
+  <line x1="430" y1="240" x2="386" y2="232" stroke="#161616" stroke-width="3"/>
+  <line x1="430" y1="250" x2="388" y2="252" stroke="#161616" stroke-width="3"/>
+
+  <!-- Cat -->
+  <ellipse cx="175" cy="710" rx="118" ry="132" fill="#161616"/>
+  <circle cx="175" cy="552" r="80" fill="#161616"/>
+  <polygon points="112,505 128,432 166,482" fill="#161616"/>
+  <polygon points="238,505 222,432 184,482" fill="#161616"/>
+  <line x1="124" y1="438" x2="116" y2="398" stroke="#161616" stroke-width="3"/>
+  <line x1="136" y1="434" x2="136" y2="392" stroke="#161616" stroke-width="3"/>
+  <line x1="214" y1="434" x2="214" y2="392" stroke="#161616" stroke-width="3"/>
+  <line x1="226" y1="438" x2="234" y2="398" stroke="#161616" stroke-width="3"/>
+  <circle cx="146" cy="548" r="27" fill="#efe8d9"/>
+  <circle cx="204" cy="548" r="27" fill="#efe8d9"/>
+  <circle cx="149" cy="551" r="5.5" fill="#161616"/>
+  <circle cx="207" cy="551" r="5.5" fill="#161616"/>
+  <polygon points="175,576 168,588 182,588" fill="#efe8d9"/>
+  <path d="M165 604 Q175 598 185 604" fill="none" stroke="#efe8d9" stroke-width="3" stroke-linecap="round"/>
+  <line x1="96" y1="560" x2="34" y2="548" stroke="#161616" stroke-width="3"/>
+  <line x1="96" y1="576" x2="36" y2="580" stroke="#161616" stroke-width="3"/>
+  <line x1="254" y1="560" x2="316" y2="548" stroke="#161616" stroke-width="3"/>
+  <line x1="254" y1="576" x2="314" y2="580" stroke="#161616" stroke-width="3"/>
+  <path d="M286 760 Q330 700 296 648" fill="none" stroke="#161616" stroke-width="14" stroke-linecap="round"/>
+</svg>

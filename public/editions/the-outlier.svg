@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#edf0ef"/>
+  <defs>
+    <pattern id="dots" x="72" y="78" width="76" height="76" patternUnits="userSpaceOnUse">
+      <circle cx="38" cy="38" r="38" fill="#3a3af2"/>
+    </pattern>
+  </defs>
+  <text x="72" y="58" font-family="Helvetica, Arial, sans-serif" font-size="12" letter-spacing="2.5" fill="#3a3af2">MUURO ARCHIVE</text>
+  <text x="528" y="58" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" letter-spacing="2.5" fill="#3a3af2">THE OUTLIER</text>
+  <rect x="72" y="78" width="456" height="684" fill="url(#dots)"/>
+  <circle cx="414" cy="648" r="38" fill="#f0321e"/>
+  <text x="72" y="800" font-family="Helvetica, Arial, sans-serif" font-size="12" letter-spacing="2.5" fill="#3a3af2">RATIO 54:1</text>
+  <text x="528" y="800" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" letter-spacing="2.5" fill="#3a3af2">ED. 04/100</text>
+</svg>
