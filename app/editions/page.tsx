@@ -17,22 +17,11 @@ export default function EditionsPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Editions" }]} />
       </div>
 
-      <div className="mt-6 border-b border-hairline">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-10">
-          <div className="flex flex-wrap items-center gap-7">
-            <span className="label border-b border-ink pb-0.5 text-ink">
-              All editions · 0{EDITIONS.length}
-            </span>
-            <span className="label cursor-default opacity-60">Size ▾</span>
-            <span className="label cursor-default opacity-60">Series ▾</span>
-            <span className="label cursor-default opacity-60">Frame ▾</span>
-            <span className="label cursor-default opacity-60">Light ▾</span>
-          </div>
-          <span className="label">Sort · Newest</span>
-        </div>
+      <div className="mx-auto max-w-[1400px] px-6 pt-10 md:px-10">
+        <h1 className="label text-ink">All editions · 0{EDITIONS.length}</h1>
       </div>
 
-      <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10">
+      <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10">
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {EDITIONS.map((edition) => (
             <ProductCard key={edition.slug} edition={edition} />

@@ -23,14 +23,13 @@ export default function CartDrawer() {
   }, [isOpen, closeCart]);
 
   return (
-    <div
-      className={`fixed inset-0 z-50 ${isOpen ? "" : "pointer-events-none"}`}
-      aria-hidden={!isOpen}
-    >
+    /* The wrapper itself never takes pointer events; only the open overlay
+       and panel do. A closed drawer can never intercept taps on the page. */
+    <div className="pointer-events-none fixed inset-0 z-50" aria-hidden={!isOpen}>
       <div
         onClick={closeCart}
         className={`absolute inset-0 bg-[#14120f]/35 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0"
+          isOpen ? "pointer-events-auto opacity-100" : "opacity-0"
         }`}
       />
       <aside
@@ -38,7 +37,7 @@ export default function CartDrawer() {
         aria-modal="true"
         aria-label="Shopping bag"
         className={`absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col bg-paper shadow-[-30px_0_60px_-10px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+          isOpen ? "pointer-events-auto translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between border-b border-hairline px-7 py-6">

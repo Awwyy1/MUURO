@@ -7,8 +7,7 @@ import CartIcon from "./CartIcon";
 import MobileMenu from "./MobileMenu";
 
 function BurgerIcon() {
-  // Three strokes; the bottom one is shorter to give the brand a
-  // distinct burger silhouette instead of the generic three-equal-lines.
+  // Two full strokes and a shorter third one. House burger silhouette.
   return (
     <svg
       width="22"
@@ -27,22 +26,43 @@ function BurgerIcon() {
   );
 }
 
+function CloseIcon() {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="5" x2="19" y2="19" />
+      <line x1="19" y1="5" x2="5" y2="19" />
+    </svg>
+  );
+}
+
 export default function Nav() {
   const { count, openCart } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
+      {/* The header never changes size or layout. On mobile the burger
+          morphs into a close icon in the same 22px slot, and the menu
+          panel slides in underneath the bar. */}
       <header className="sticky top-0 z-40 border-b border-hairline bg-paper/95 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-4 md:px-10 md:py-5">
           <Link
             href="/"
+            onClick={() => setMenuOpen(false)}
             className="shrink-0 text-[15px] font-semibold tracking-[0.24em] [text-indent:0.24em]"
           >
             MUURO
           </Link>
 
-          {/* Slogan sits in the same line, on both desktop and mobile. */}
           <span className="label min-w-0 flex-1 truncate text-center text-stone">
             Your Visual Capital
           </span>
@@ -70,7 +90,10 @@ export default function Nav() {
           <div className="flex shrink-0 items-center gap-3 md:hidden">
             <button
               type="button"
-              onClick={openCart}
+              onClick={() => {
+                setMenuOpen(false);
+                openCart();
+              }}
               className="flex h-[22px] w-[22px] cursor-pointer items-center justify-center text-ink"
               aria-label={`Open bag, ${count} items`}
             >
@@ -78,11 +101,11 @@ export default function Nav() {
             </button>
             <button
               type="button"
-              onClick={() => setMenuOpen(true)}
+              onClick={() => setMenuOpen((v) => !v)}
               className="flex h-[22px] w-[22px] cursor-pointer items-center justify-center text-ink"
-              aria-label="Open menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              <BurgerIcon />
+              {menuOpen ? <CloseIcon /> : <BurgerIcon />}
             </button>
           </div>
         </nav>
