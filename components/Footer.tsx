@@ -50,7 +50,7 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       className="label transition-colors hover:text-ink"
                     >
-                      {link.label} ↗
+                      {link.label}
                     </a>
                   </li>
                 ) : (

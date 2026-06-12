@@ -30,7 +30,7 @@ function find(options: PriceOption[], id: string, kind: string): PriceOption {
 }
 
 /**
- * Single source of truth for pricing — used by the configurator, the cart
+ * Single source of truth for pricing. Used by the configurator, the cart
  * and the server-side PaymentIntent creation. The client never sends a price.
  */
 export function unitPrice(

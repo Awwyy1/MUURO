@@ -7,11 +7,17 @@ export interface Edition {
   series: string;
   year: number;
   editionSize: number;
-  /** EUR — framed 50 × 70 cm, no light. All other configs derive from this. */
+  /** EUR. Framed 50 × 70 cm, no light. Other configurations derive from this. */
   basePrice: number;
   short: string;
   description: string;
-  image: string;
+  /**
+   * Photography paths in display order. The first image is the cover used
+   * on the catalogue card. The full list powers the swipeable gallery on
+   * the product page. Empty array falls back to the SVG placeholder.
+   * Drop JPGs into public/editions/<slug>/ and list them here.
+   */
+  images: string[];
   status: EditionStatus;
 }
 
@@ -25,10 +31,10 @@ export const EDITIONS: Edition[] = [
     editionSize: 100,
     basePrice: 240,
     short:
-      "A study in conformity and exception. Fifty-four cobalt circles — one refuses.",
+      "A study in conformity and exception. Fifty four cobalt circles, one refuses.",
     description:
-      "Six columns, nine rows. Fifty-three circles hold the line; one breaks it. The Outlier is a study in conformity and exception — geometric, deliberate, quiet. For the room of someone who knows exactly which circle they are.",
-    image: "/editions/the-outlier.svg",
+      "Six columns, nine rows. Fifty three circles hold the line; one breaks it. The Outlier is a study in conformity and exception. Geometric, deliberate, quiet. For the room of someone who knows exactly which circle they are.",
+    images: [],
     status: "available",
   },
   {
@@ -40,10 +46,10 @@ export const EDITIONS: Edition[] = [
     editionSize: 100,
     basePrice: 240,
     short:
-      "Nineteen sixty-three. Split-window. Black on black with gilded numerals.",
+      "Nineteen sixty three. Split window. Black on black with gilded numerals.",
     description:
-      "The only year Chevrolet built the split-window coupé. Rendered in near-black with gilded numerals — a portrait of restraint and horsepower in equal measure. For drivers, collectors, and everyone who keeps one particular garage in their head.",
-    image: "/editions/63-sting-ray.svg",
+      "The only year Chevrolet built the split window coupé. Rendered in near black with gilded numerals. A portrait of restraint and horsepower in equal measure. For drivers, collectors, and everyone who keeps one particular garage in their head.",
+    images: [],
     status: "available",
   },
   {
@@ -56,8 +62,8 @@ export const EDITIONS: Edition[] = [
     basePrice: 220,
     short: "Crimson over sand. A landscape that never existed.",
     description:
-      "Layered line-work in red and bone, drawn like the contour map of an imagined coast. Calm at the bottom, weather at the top. Hangs well in rooms where conversations happen.",
-    image: "/editions/red-waves.svg",
+      "Layered line work in red and bone, drawn like the contour map of an imagined coast. Calm at the bottom, weather at the top. Hangs well in rooms where conversations happen.",
+    images: [],
     status: "available",
   },
   {
@@ -71,7 +77,7 @@ export const EDITIONS: Edition[] = [
     short: "Two concerned residents. One eternal Berlin question.",
     description:
       "A cat, a giraffe, and the question every Berlin flatshare eventually asks out loud. Monochrome ink on cream. Proof that a serious wall can keep a sense of humour.",
-    image: "/editions/hast-du-gekackt.svg",
+    images: [],
     status: "available",
   },
   {
@@ -84,8 +90,8 @@ export const EDITIONS: Edition[] = [
     basePrice: 220,
     short: "Final artwork to be revealed.",
     description:
-      "This edition is being prepared for release. The artwork and title will be revealed shortly — subscribers see it first.",
-    image: "/editions/untitled-05.svg",
+      "This edition is being prepared for release. The artwork and title will be revealed shortly. Subscribers see it first.",
+    images: [],
     status: "available",
   },
   {
@@ -98,8 +104,8 @@ export const EDITIONS: Edition[] = [
     basePrice: 220,
     short: "Final artwork to be revealed.",
     description:
-      "This edition is being prepared for release. The artwork and title will be revealed shortly — subscribers see it first.",
-    image: "/editions/untitled-06.svg",
+      "This edition is being prepared for release. The artwork and title will be revealed shortly. Subscribers see it first.",
+    images: [],
     status: "available",
   },
 ];
@@ -112,4 +118,16 @@ export function getEdition(slug: string): Edition | undefined {
 
 export function getCurrentDrop(): Edition {
   return getEdition(CURRENT_DROP_SLUG) ?? EDITIONS[0];
+}
+
+/** Cover image for catalogue cards. Falls back to the SVG placeholder. */
+export function coverImage(edition: Edition): string {
+  return edition.images[0] ?? `/editions/${edition.slug}.svg`;
+}
+
+/** Full gallery for the product page. Falls back to the SVG placeholder. */
+export function galleryImages(edition: Edition): string[] {
+  return edition.images.length > 0
+    ? edition.images
+    : [`/editions/${edition.slug}.svg`];
 }

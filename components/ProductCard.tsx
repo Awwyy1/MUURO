@@ -1,17 +1,29 @@
 import Link from "next/link";
-import type { Edition } from "@/lib/editions";
+import { coverImage, type Edition } from "@/lib/editions";
 import { formatEur, minPrice } from "@/lib/pricing";
 import FramedArtwork from "./FramedArtwork";
 
 export default function ProductCard({ edition }: { edition: Edition }) {
+  const cover = coverImage(edition);
+  const usingPlaceholder = edition.images.length === 0;
+
   return (
     <Link href={`/editions/${edition.slug}`} className="group flex flex-col gap-5">
       <div className="flex items-center justify-center bg-wall px-8 py-10 transition-colors duration-300 group-hover:bg-[#eae6db]">
-        <FramedArtwork
-          src={edition.image}
-          alt={`${edition.title} — limited edition print`}
-          className="w-full max-w-[300px]"
-        />
+        {usingPlaceholder ? (
+          <FramedArtwork
+            src={cover}
+            alt={`${edition.title}, limited edition print`}
+            className="w-full max-w-[300px]"
+          />
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={cover}
+            alt={`${edition.title}, limited edition print`}
+            className="block aspect-[4/5] w-full max-w-[300px] object-cover"
+          />
+        )}
       </div>
       <div className="flex items-start justify-between gap-4">
         <div>

@@ -46,7 +46,7 @@ export default function Configurator({ slug }: { slug: string }) {
 
   function selectFrame(id: string) {
     setFrameId(id);
-    // The perimeter LED mounts into the frame profile — no frame, no light.
+    // The perimeter LED mounts into the frame profile. No frame, no light.
     if (id === "none") setLightId("off");
   }
 

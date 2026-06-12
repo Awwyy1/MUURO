@@ -56,7 +56,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) setItems(JSON.parse(raw));
     } catch {
-      /* corrupted storage — start clean */
+      /* corrupted storage, start clean */
     }
     setHydrated(true);
   }, []);
@@ -105,7 +105,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           item.qty;
         count += item.qty;
       } catch {
-        /* stale item for a removed edition — ignored in totals */
+        /* stale item for a removed edition, ignored in totals */
       }
     }
     return { count, subtotal };

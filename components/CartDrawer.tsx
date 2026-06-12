@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useCart } from "@/lib/cart";
-import { getEdition } from "@/lib/editions";
+import { coverImage, getEdition } from "@/lib/editions";
 import { describeConfig, formatEur, unitPrice } from "@/lib/pricing";
 
 export default function CartDrawer() {
@@ -82,9 +82,9 @@ export default function CartDrawer() {
                     <div className="self-start border-[3px] border-[#17161a]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={edition.image}
+                        src={coverImage(edition)}
                         alt={edition.title}
-                        className="block h-auto w-full"
+                        className="block aspect-[4/5] w-full object-cover"
                       />
                     </div>
                     <div>

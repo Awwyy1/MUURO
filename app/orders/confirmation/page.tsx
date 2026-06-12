@@ -44,7 +44,7 @@ function ConfirmationInner() {
 
   return (
     <div className="mx-auto flex max-w-[640px] flex-col items-center gap-6 px-6 py-32 text-center">
-      {status === "loading" && <p className="label animate-pulse">Confirming…</p>}
+      {status === "loading" && <p className="label animate-pulse">Confirming</p>}
 
       {status === "succeeded" && (
         <>
@@ -54,7 +54,7 @@ function ConfirmationInner() {
           </h1>
           <p className="max-w-[420px] text-[15px] leading-[1.7] text-[#333]">
             A confirmation is on its way to your inbox. Framed editions leave
-            the studio within 3–5 working days in a rigid art crate.
+            the studio within 3 to 5 working days in a rigid art crate.
           </p>
           {intentId && (
             <p className="label normal-case tracking-[0.08em]">Ref · {intentId}</p>
@@ -72,8 +72,8 @@ function ConfirmationInner() {
             Almost there.
           </h1>
           <p className="max-w-[420px] text-[15px] leading-[1.7] text-[#333]">
-            Your payment is being processed — you'll receive a confirmation as
-            soon as it completes.
+            Your payment is being processed. You will receive a confirmation
+            as soon as it completes.
           </p>
         </>
       )}
@@ -85,7 +85,7 @@ function ConfirmationInner() {
             Something interrupted the payment.
           </h1>
           <p className="max-w-[420px] text-[15px] leading-[1.7] text-[#333]">
-            No charge was completed. Your bag is untouched — you can try again.
+            No charge was completed. Your bag is untouched. You can try again.
           </p>
           <Link href="/checkout" className="btn mt-2">
             Return to checkout
@@ -99,7 +99,7 @@ function ConfirmationInner() {
 export default function ConfirmationPage() {
   return (
     <Suspense
-      fallback={<p className="label py-32 text-center animate-pulse">Confirming…</p>}
+      fallback={<p className="label py-32 text-center animate-pulse">Confirming</p>}
     >
       <ConfirmationInner />
     </Suspense>

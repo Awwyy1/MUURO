@@ -1,7 +1,7 @@
 /**
  * Renders an artwork inside a thin Nielsen-style aluminium frame with a soft
- * drop shadow — the house presentation for every edition image until real
- * photography arrives (and the fallback after).
+ * drop shadow. House presentation for every edition image until real
+ * photography arrives, and the fallback after.
  */
 export default function FramedArtwork({
   src,

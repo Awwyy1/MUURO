@@ -31,9 +31,9 @@ export default function CheckoutForm() {
       },
     });
 
-    // Only reached on immediate failure — success redirects away.
+    // Only reached on immediate failure. Success redirects away.
     if (error) {
-      setMessage(error.message ?? "Payment failed — please try again.");
+      setMessage(error.message ?? "Payment failed. Please try again.");
       setSubmitting(false);
     }
   }

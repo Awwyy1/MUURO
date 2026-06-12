@@ -56,7 +56,7 @@ export default function Newsletter() {
         )}
         {status === "unconfigured" && (
           <p className="label mt-5">
-            Sign-up opens with the first drop — follow{" "}
+            Sign-up opens with the first drop. Follow{" "}
             <a
               href="https://www.instagram.com/muuro.co/"
               target="_blank"
@@ -65,11 +65,11 @@ export default function Newsletter() {
             >
               @muuro.co
             </a>{" "}
-            meanwhile
+            meanwhile.
           </p>
         )}
         {status === "error" && (
-          <p className="label mt-5">Something went wrong — please try again</p>
+          <p className="label mt-5">Something went wrong. Please try again.</p>
         )}
       </div>
     </section>

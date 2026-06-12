@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "invalid_items" }, { status: 400 });
   }
 
-  // Recompute the amount server-side — the client never sends a price.
+  // Recompute the amount server-side. The client never sends a price.
   let amount = 0;
   const lines: string[] = [];
   try {
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       amount += price * qty;
       const edition = getEdition(item.slug);
       lines.push(
-        `${qty}× ${edition?.title} (${describeConfig(item.sizeId, item.frameId, item.lightId)}) — €${price * qty}`
+        `${qty}× ${edition?.title} (${describeConfig(item.sizeId, item.frameId, item.lightId)}) €${price * qty}`
       );
     }
   } catch {

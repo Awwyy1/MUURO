@@ -16,7 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Small uppercase label — the workhorse of the identity */
+/* Small uppercase label. Workhorse of the identity. */
 .label {
   font-size: 10px;
   font-weight: 500;

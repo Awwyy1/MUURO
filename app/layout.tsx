@@ -16,15 +16,15 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://muuro.co"),
   title: {
-    default: "MUURO — Your Visual Capital",
-    template: "%s — MUURO",
+    default: "MUURO. Your Visual Capital",
+    template: "%s. MUURO",
   },
   description:
-    "Limited art editions in Nielsen aluminium frames — with or without integrated light. The final accent your interior is missing.",
+    "Limited art editions in Nielsen aluminium frames, with or without integrated light. The final accent your interior is missing.",
   openGraph: {
-    title: "MUURO — Your Visual Capital",
+    title: "MUURO. Your Visual Capital",
     description:
-      "Limited art editions in Nielsen aluminium frames — with or without integrated light.",
+      "Limited art editions in Nielsen aluminium frames, with or without integrated light.",
     url: "https://muuro.co",
     siteName: "MUURO",
     type: "website",

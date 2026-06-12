@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useCart } from "@/lib/cart";
-import { getEdition } from "@/lib/editions";
+import { coverImage, getEdition } from "@/lib/editions";
 import { describeConfig, formatEur, unitPrice } from "@/lib/pricing";
 import CheckoutForm from "@/components/CheckoutForm";
 
@@ -58,7 +58,7 @@ export default function CheckoutPage() {
   if (!hydrated) {
     return (
       <div className="mx-auto max-w-[1400px] px-6 py-32 text-center">
-        <p className="label animate-pulse">Loading…</p>
+        <p className="label animate-pulse">Loading</p>
       </div>
     );
   }
@@ -92,16 +92,16 @@ export default function CheckoutPage() {
               STRIPE_SECRET_KEY=sk_test_…
             </pre>
             <p className="mt-4 text-[13px] leading-[1.7] text-stone">
-              Keys live at dashboard.stripe.com → Developers → API keys (test
-              mode). On Vercel: Project → Settings → Environment Variables.
+              Keys live at dashboard.stripe.com, Developers, API keys (test
+              mode). On Vercel: Project, Settings, Environment Variables.
             </p>
           </div>
         ) : error === "failed" ? (
           <p className="label mt-8">
-            Could not start the payment session — refresh to try again.
+            Could not start the payment session. Refresh to try again.
           </p>
         ) : !clientSecret || !stripePromise ? (
-          <p className="label mt-8 animate-pulse">Preparing secure payment…</p>
+          <p className="label mt-8 animate-pulse">Preparing secure payment</p>
         ) : (
           <Elements stripe={stripePromise} options={{ clientSecret, appearance }}>
             <CheckoutForm />
@@ -126,7 +126,11 @@ export default function CheckoutPage() {
                 <li key={i} className="grid grid-cols-[56px_1fr_auto] items-start gap-4">
                   <div className="border-[3px] border-[#17161a]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={edition.image} alt="" className="block h-auto w-full" />
+                    <img
+                      src={coverImage(edition)}
+                      alt=""
+                      className="block aspect-[4/5] w-full object-cover"
+                    />
                   </div>
                   <div>
                     <div className="text-[13px] font-medium">{edition.title}</div>
@@ -150,7 +154,7 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between">
               <span className="label">Shipping</span>
-              <span className="label">Free · launch period</span>
+              <span className="label">Free, launch period</span>
             </div>
             <div className="flex justify-between">
               <span className="label">VAT</span>
@@ -164,7 +168,7 @@ export default function CheckoutPage() {
           </div>
         </div>
         <p className="label mt-5 text-center">
-          Test mode — card 4242 4242 4242 4242, any future date, any CVC
+          Test mode. Card 4242 4242 4242 4242, any future date, any CVC.
         </p>
       </aside>
     </div>

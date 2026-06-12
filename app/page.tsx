@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EDITIONS, getCurrentDrop } from "@/lib/editions";
+import { EDITIONS, coverImage, getCurrentDrop } from "@/lib/editions";
 import FramedArtwork from "@/components/FramedArtwork";
 import ProductCard from "@/components/ProductCard";
 import Newsletter from "@/components/Newsletter";
@@ -7,24 +7,36 @@ import Newsletter from "@/components/Newsletter";
 export default function Home() {
   const drop = getCurrentDrop();
   const teaser = EDITIONS.find((e) => e.slug === "63-sting-ray") ?? EDITIONS[1];
+  const dropCover = coverImage(drop);
+  const teaserCover = coverImage(teaser);
+  const dropHasPhotos = drop.images.length > 0;
+  const teaserHasPhotos = teaser.images.length > 0;
 
   return (
     <>
-      {/* Brand line — the slogan as a quiet ribbon under the nav */}
-      <div className="border-b border-hairline">
+      {/* Desktop brand ribbon. Mobile shows the slogan inside the nav bar. */}
+      <div className="hidden border-b border-hairline md:block">
         <p className="py-3 text-center text-[10px] font-medium uppercase tracking-[0.42em] text-stone [text-indent:0.42em]">
           Your Visual Capital
         </p>
       </div>
 
-      {/* Hero — current drop */}
       <section className="grid min-h-[540px] lg:grid-cols-2">
         <div className="flex items-center justify-center bg-wall px-10 py-16 lg:py-20">
-          <FramedArtwork
-            src={drop.image}
-            alt={`${drop.title} — current drop`}
-            className="w-full max-w-[420px]"
-          />
+          {dropHasPhotos ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={dropCover}
+              alt={drop.title}
+              className="block w-full max-w-[420px]"
+            />
+          ) : (
+            <FramedArtwork
+              src={dropCover}
+              alt={drop.title}
+              className="w-full max-w-[420px]"
+            />
+          )}
         </div>
         <div className="flex flex-col justify-center gap-6 px-6 py-14 md:px-14 lg:py-20">
           <div className="label">
@@ -33,9 +45,8 @@ export default function Home() {
           <h1 className="text-[44px] font-medium leading-[1.04] tracking-[-0.01em] md:text-[58px]">
             {drop.title}.
           </h1>
-          <div className="h-px w-10 bg-ink/50" />
           <p className="max-w-[440px] text-[15px] leading-[1.7] text-[#333]">
-            {drop.short} Hahnemühle Photo Rag · Nielsen aluminium · backlit
+            {drop.short} Hahnemühle Photo Rag, Nielsen aluminium, backlit
             available. Signed and numbered.
           </p>
           <div>
@@ -46,7 +57,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* All six editions */}
       <section className="hairline">
         <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
           <div className="flex items-baseline justify-between">
@@ -63,13 +73,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Manifesto teaser */}
       <section className="hairline">
         <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-6 py-20 md:px-10 lg:grid-cols-2">
           <div>
             <div className="label">Manifesto</div>
             <h2 className="mt-5 max-w-[520px] text-[28px] font-medium leading-[1.25] md:text-[34px]">
-              We don't sell decoration. We publish the final accent your
+              We don&apos;t sell decoration. We publish the final accent your
               interior is missing.
             </h2>
             <p className="mt-6 max-w-[460px] text-[15px] leading-[1.7] text-[#333]">
@@ -82,11 +91,20 @@ export default function Home() {
             </Link>
           </div>
           <div className="flex items-center justify-center bg-wall px-10 py-14">
-            <FramedArtwork
-              src={teaser.image}
-              alt={teaser.title}
-              className="w-full max-w-[340px]"
-            />
+            {teaserHasPhotos ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={teaserCover}
+                alt={teaser.title}
+                className="block w-full max-w-[340px]"
+              />
+            ) : (
+              <FramedArtwork
+                src={teaserCover}
+                alt={teaser.title}
+                className="w-full max-w-[340px]"
+              />
+            )}
           </div>
         </div>
       </section>
