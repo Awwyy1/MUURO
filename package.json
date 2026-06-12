@@ -1,23 +1,38 @@
 {
   "name": "muuro",
   "version": "1.0.0",
-  "description": "MUURO — Your Visual Capital",
-  "main": "index.html",
+  "description": "MUURO. Your Visual Capital.",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Awwyy1/MUURO.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Awwyy1/MUURO/issues"
   },
   "homepage": "https://github.com/Awwyy1/MUURO#readme",
+  "license": "ISC",
   "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.6.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^1.1.0",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "stripe": "^17.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
   }
 }

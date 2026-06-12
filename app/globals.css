@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf8f4;
+  --color-ink: #1c1c1c;
+  --color-stone: #8a857c;
+  --color-wall: #efece4;
+  --color-hairline: rgba(0, 0, 0, 0.08);
+  --color-edge: #c9c2b0;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Small uppercase label. Workhorse of the identity. */
+.label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border: 1px solid var(--color-ink);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.btn-fill {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.btn-fill:hover {
+  background: #000;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.chip {
+  padding: 10px 14px;
+  border: 1px solid var(--color-edge);
+  background: transparent;
+  color: #555;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--color-ink);
+}
+
+.chip-on {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.input {
+  height: 46px;
+  width: 100%;
+  border: 1px solid var(--color-edge);
+  background: #fff;
+  padding: 0 14px;
+  font-size: 14px;
+  color: var(--color-ink);
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--color-ink);
+}
+
+.hairline {
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* Native accordions on the product page */
+details.spec summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #444;
+  cursor: pointer;
+  list-style: none;
+}
+
+details.spec summary::-webkit-details-marker {
+  display: none;
+}
+
+details.spec summary::after {
+  content: "+";
+  font-size: 14px;
+  color: var(--color-stone);
+}
+
+details.spec[open] summary::after {
+  content: "−";
+}

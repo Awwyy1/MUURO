@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#141414"/>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff4dd" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#f5e3bd" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#f5e3bd" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="300" cy="270" rx="250" ry="230" fill="url(#glow)"/>
+  <rect x="198" y="130" width="204" height="280" fill="#1b1b1f" stroke="#34343a" stroke-width="4"/>
+  <rect x="216" y="148" width="168" height="244" fill="#232328"/>
+  <text x="300" y="540" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#9b958a">INTEGRATED 24 V LED · WARM WHITE · DIMMABLE</text>
+</svg>
