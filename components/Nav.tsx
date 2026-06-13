@@ -58,7 +58,7 @@ export default function Nav() {
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
-            className="shrink-0 text-[15px] font-semibold tracking-[0.24em] [text-indent:0.24em]"
+            className="shrink-0 text-[15px] font-semibold leading-none tracking-[0.24em] [text-indent:0.24em]"
           >
             MUURO
           </Link>
