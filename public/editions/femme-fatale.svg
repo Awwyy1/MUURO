@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#f6efe6"/>
+  <text x="78" y="118" font-family="Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#0a0a0a">Q</text>
+  <text x="80" y="170" font-family="Arial, sans-serif" font-size="36" fill="#0a0a0a">♠</text>
+  <g transform="translate(300 430) rotate(-6)">
+    <ellipse cx="-46" cy="-4" rx="58" ry="22" fill="#c3262a" opacity="0.78"/>
+    <ellipse cx="46" cy="-4" rx="58" ry="22" fill="#c3262a" opacity="0.78"/>
+    <path d="M-104 0 Q-50 -30 0 -10 Q50 -30 104 0 Q60 26 0 18 Q-60 26 -104 0 Z" fill="#a8181b" opacity="0.55"/>
+    <path d="M-90 4 Q-46 22 0 18 Q46 22 90 4" fill="none" stroke="#7a1012" stroke-width="2" opacity="0.6"/>
+  </g>
+  <text x="300" y="700" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-style="italic" fill="#0a0a0a">femme fatale</text>
+  <text x="522" y="746" text-anchor="end" font-family="Arial, sans-serif" font-size="36" fill="#0a0a0a" transform="rotate(180 522 736)">♠</text>
+  <text x="522" y="798" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#0a0a0a" transform="rotate(180 522 778)">Q</text>
+</svg>

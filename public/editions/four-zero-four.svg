@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#0a0a0a"/>
+  <g transform="rotate(90 320 420)">
+    <text
+      x="320" y="500"
+      text-anchor="middle"
+      font-family="Helvetica, Arial, sans-serif"
+      font-size="540"
+      font-weight="900"
+      fill="#ffffff"
+      letter-spacing="-30"
+    >404</text>
+  </g>
+  <line x1="48" y1="788" x2="218" y2="788" stroke="#ffffff" stroke-width="6"/>
+  <text x="240" y="795" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" font-weight="500" fill="#ffffff">FOUR ZERO FOUR / A STUDY IN ABSENCE</text>
+</svg>

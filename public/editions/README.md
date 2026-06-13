@@ -69,5 +69,5 @@ in GitHub. The gallery rebuilds with whatever files remain.
 - [63-sting-ray](./63-sting-ray/)
 - [red-waves](./red-waves/)
 - [hast-du-gekackt](./hast-du-gekackt/)
-- [untitled-05](./untitled-05/)
-- [untitled-06](./untitled-06/)
+- [four-zero-four](./four-zero-four/)
+- [femme-fatale](./femme-fatale/)
