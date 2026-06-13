@@ -78,53 +78,15 @@ export default function Gallery({
   return (
     <div className="flex flex-col gap-3">
       <div
-        className="relative aspect-[4/5] overflow-hidden bg-wall md:aspect-auto md:h-[600px] md:px-24 xl:h-[720px]"
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
+        className="relative aspect-[4/5] bg-wall md:aspect-auto md:h-[600px] md:px-24 xl:h-[720px]"
       >
-        <div
-          className="flex h-full w-full transition-transform duration-[260ms] ease-out will-change-transform"
-          style={{ transform: `translateX(-${index * 100}%)` }}
-        >
-          {slides.map((src, i) => (
-            <div
-              key={i}
-              className="flex h-full w-full shrink-0 items-center justify-center"
-            >
-              {isFallback && i === 0 ? (
-                <div className="w-full max-w-[460px] p-6 md:p-10">
-                  <FramedArtwork src={src} alt={title} />
-                </div>
-              ) : (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={src}
-                  alt={
-                    i === index
-                      ? `${title}, view ${i + 1} of ${slides.length}`
-                      : ""
-                  }
-                  decoding="async"
-                  fetchPriority={i === 0 ? "high" : "auto"}
-                  draggable={false}
-                  className={
-                    isFallback
-                      ? "block max-w-[460px] select-none"
-                      : "block h-full w-full select-none object-cover md:object-contain"
-                  }
-                />
-              )}
-            </div>
-          ))}
-        </div>
-
         {slides.length > 1 && (
           <>
             <button
               type="button"
               aria-label="Previous image"
               onClick={() => go(index - 1)}
-              className="absolute left-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center text-[26px] font-light text-stone transition-colors hover:text-ink md:flex"
+              className="absolute left-4 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center text-[26px] font-light text-stone transition-colors hover:text-ink md:flex"
             >
               ‹
             </button>
@@ -132,11 +94,58 @@ export default function Gallery({
               type="button"
               aria-label="Next image"
               onClick={() => go(index + 1)}
-              className="absolute right-4 top-1/2 hidden h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center text-[26px] font-light text-stone transition-colors hover:text-ink md:flex"
+              className="absolute right-4 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center text-[26px] font-light text-stone transition-colors hover:text-ink md:flex"
             >
               ›
             </button>
+          </>
+        )}
 
+        {/* Inner clip box. overflow-hidden lives here, on the content area only,
+            so adjacent slides cannot bleed into the padding gutters where the
+            chevrons sit. */}
+        <div
+          className="relative h-full w-full overflow-hidden"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          <div
+            className="flex h-full w-full transition-transform duration-[260ms] ease-out will-change-transform"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {slides.map((src, i) => (
+              <div
+                key={i}
+                className="flex h-full w-full shrink-0 items-center justify-center"
+              >
+                {isFallback && i === 0 ? (
+                  <div className="w-full max-w-[460px] p-6 md:p-10">
+                    <FramedArtwork src={src} alt={title} />
+                  </div>
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={src}
+                    alt={
+                      i === index
+                        ? `${title}, view ${i + 1} of ${slides.length}`
+                        : ""
+                    }
+                    decoding="async"
+                    fetchPriority={i === 0 ? "high" : "auto"}
+                    draggable={false}
+                    className={
+                      isFallback
+                        ? "block max-w-[460px] select-none"
+                        : "block h-full w-full select-none object-cover md:object-contain"
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {slides.length > 1 && (
             <div
               className="pointer-events-none absolute bottom-4 left-1/2 flex max-w-[90%] -translate-x-1/2 flex-wrap items-center justify-center gap-1.5"
               aria-hidden="true"
@@ -150,8 +159,8 @@ export default function Gallery({
                 />
               ))}
             </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
 
       {slides.length > 1 && (
