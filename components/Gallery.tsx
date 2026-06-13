@@ -78,7 +78,7 @@ export default function Gallery({
   return (
     <div className="flex flex-col gap-3">
       <div
-        className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-wall md:px-24"
+        className="relative aspect-[4/5] overflow-hidden bg-wall md:aspect-auto md:h-[600px] md:px-24 xl:h-[720px]"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -110,7 +110,7 @@ export default function Gallery({
                   className={
                     isFallback
                       ? "block max-w-[460px] select-none"
-                      : "block h-full w-full select-none object-cover"
+                      : "block h-full w-full select-none object-cover md:object-contain"
                   }
                 />
               )}
