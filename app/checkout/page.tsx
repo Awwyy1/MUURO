@@ -82,20 +82,19 @@ export default function CheckoutPage() {
         <h1 className="text-[26px] font-medium">Checkout</h1>
 
         {notConfigured ? (
-          <div className="mt-8 border border-edge bg-white p-7">
-            <p className="label text-ink">Payments not configured</p>
-            <p className="mt-4 text-[14px] leading-[1.7] text-[#444]">
-              Add Stripe test keys to the environment and redeploy:
-            </p>
-            <pre className="mt-4 overflow-x-auto bg-paper p-4 text-[12px] leading-[1.8]">
-              NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_…{"\n"}
-              STRIPE_SECRET_KEY=sk_test_…
-            </pre>
-            <p className="mt-4 text-[13px] leading-[1.7] text-stone">
-              Keys live at dashboard.stripe.com, Developers, API keys (test
-              mode). On Vercel: Project, Settings, Environment Variables.
-            </p>
-          </div>
+          <p className="mt-10 max-w-[460px] text-[14px] leading-[1.8] text-stone">
+            Direct checkout opens shortly. Until then, place your order
+            through{" "}
+            <a
+              href="https://www.instagram.com/muuro.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink underline underline-offset-2"
+            >
+              Instagram
+            </a>
+            .
+          </p>
         ) : error === "failed" ? (
           <p className="label mt-8">
             Could not start the payment session. Refresh to try again.

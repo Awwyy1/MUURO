@@ -31,17 +31,17 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
 export default function Footer() {
   return (
     <footer className="hairline">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-14 md:grid-cols-[2fr_1fr_1fr_1fr] md:px-10">
+      <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-10 md:grid-cols-[2fr_1fr_1fr_1fr] md:px-10 md:py-12">
         <div>
           <div className="text-[15px] font-semibold tracking-[0.24em]">MUURO</div>
-          <div className="label mt-4">Your Visual Capital</div>
+          <div className="brand-line mt-3">Your Visual Capital</div>
         </div>
         {COLUMNS.map((col) => (
           <div key={col.title}>
             <div className="text-[10px] font-semibold uppercase tracking-[0.2em]">
               {col.title}
             </div>
-            <ul className="mt-4 flex flex-col gap-3">
+            <ul className="mt-3 flex flex-col gap-2">
               {col.links.map((link) =>
                 link.href.startsWith("http") ? (
                   <li key={link.label}>
@@ -70,8 +70,8 @@ export default function Footer() {
         ))}
       </div>
       <div className="hairline">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 md:px-10">
-          <span className="label">© 2025 MUURO</span>
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
+          <span className="label">© 2026 MUURO</span>
           <span className="label">muuro.co</span>
         </div>
       </div>

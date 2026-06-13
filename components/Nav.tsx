@@ -63,7 +63,7 @@ export default function Nav() {
             MUURO
           </Link>
 
-          <span className="label min-w-0 flex-1 truncate text-center text-stone">
+          <span className="brand-line min-w-0 flex-1 truncate text-center">
             Your Visual Capital
           </span>
 

@@ -25,6 +25,18 @@ body {
   color: var(--color-stone);
 }
 
+/* Brand line. Reserved for "Your Visual Capital". One half-tone darker
+   than nav items and notably wider tracking, so it reads as the brand
+   signature instead of another menu link. */
+.brand-line {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  text-transform: uppercase;
+  color: #5a554f;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;

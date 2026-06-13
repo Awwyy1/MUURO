@@ -16,7 +16,11 @@ export default function Newsletter() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          source: "web-home",
+          userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
+        }),
       });
       if (res.ok) setStatus("ok");
       else if (res.status === 503) setStatus("unconfigured");
