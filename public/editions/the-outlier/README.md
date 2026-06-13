@@ -1,6 +1,6 @@
-# The Outlier, Edition 04
+# The outlier
 
-Drop the 5 product photos for **The Outlier** into this folder, named:
+Drop your product photos here, named:
 
 ```
 01.jpg   <- cover (used on the catalogue grid)
@@ -10,16 +10,6 @@ Drop the 5 product photos for **The Outlier** into this folder, named:
 05.jpg
 ```
 
-Then enable them in `lib/editions.ts` by setting:
-
-```ts
-images: [
-  "/editions/the-outlier/01.jpg",
-  "/editions/the-outlier/02.jpg",
-  "/editions/the-outlier/03.jpg",
-  "/editions/the-outlier/04.jpg",
-  "/editions/the-outlier/05.jpg",
-],
-```
-
-See `public/editions/README.md` for format guidance.
+The site reads this folder automatically at build time. No code
+changes needed. See `public/editions/README.md` for the full how-to
+and format guidance.

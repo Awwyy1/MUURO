@@ -1,8 +1,9 @@
 # Edition photography
 
-This is where every edition's product photography lives. The site reads
-images from these folders and shows them in the catalogue and on the
-swipeable product gallery.
+This is where every edition's product photography lives. The site
+scans these folders at build time and shows whatever it finds, so
+**you do not need to touch the code** to add or replace images. Drop
+files in, commit, and the site updates itself.
 
 ## File convention
 
@@ -22,44 +23,44 @@ public/editions/
     ...
 ```
 
-The first image (`01.jpg`) is the cover shown on the catalogue grid.
+The first image (`01.jpg`) becomes the cover on the catalogue grid.
 All images are displayed in order on the product page as a swipeable
 gallery: customers swipe or click arrows to flip through them. You
 decide what each photo shows (room scene, paper detail, frame corner,
 backlit at night, person handling the frame). The site does not label
 them.
 
-## How to add real photography
+## How to add real photography (no code edits)
 
-1. Open the folder for the edition you want to update, e.g.
+1. Open the folder for the edition on GitHub, e.g.
    `public/editions/the-outlier/`.
-2. Drop your 5 photos in, named `01.jpg` through `05.jpg`.
-3. Open `lib/editions.ts` and find the matching edition entry.
-4. Replace its `images: []` line with:
+2. Click **Add file → Upload files**.
+3. Drag in your photos. **File names must be** `01.jpg`, `02.jpg`,
+   `03.jpg`, `04.jpg`, `05.jpg`. Lower-case, no spaces.
+4. Commit the upload directly to `main`.
+5. Vercel rebuilds in 1 to 2 minutes. The new photography appears
+   on `muuro.co` automatically.
 
-   ```ts
-   images: [
-     "/editions/the-outlier/01.jpg",
-     "/editions/the-outlier/02.jpg",
-     "/editions/the-outlier/03.jpg",
-     "/editions/the-outlier/04.jpg",
-     "/editions/the-outlier/05.jpg",
-   ],
-   ```
+You can upload fewer than five files. If only `01.jpg` and `02.jpg`
+exist, the gallery shows two slides instead of five.
 
-5. Commit and push. Vercel rebuilds automatically and the new
-   photography goes live.
-
-If `images` is left empty, the site falls back to the SVG placeholder.
+`.png` and `.webp` work too; the matcher accepts `01.jpg`, `01.jpeg`,
+`01.png`, `01.webp`.
 
 ## Format guidance
 
-- **Aspect ratio**: 4:5 portrait works best. Matches framed posters and
-  keeps the layout consistent across editions.
+- **Aspect ratio**: 4:5 portrait works best. Matches framed posters
+  and keeps the layout consistent across editions.
 - **Resolution**: at least 1600 px on the long side. 2400 px is ideal.
 - **File size**: aim for under 600 KB per image. Use
   [Squoosh](https://squoosh.app) or `mozjpeg` to compress.
-- **Naming**: keep `01.jpg`, `02.jpg`, ... order. Lowercase, no spaces.
+- **Naming**: keep `01.jpg`, `02.jpg`, ... order. Lower-case.
+
+## Replacing or removing an image
+
+To replace `02.jpg`, just upload a new file with the same name; the
+old one is overwritten. To remove a slide entirely, delete the file
+in GitHub. The gallery rebuilds with whatever files remain.
 
 ## Editions
 

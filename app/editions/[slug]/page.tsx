@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EDITIONS, galleryImages, getEdition } from "@/lib/editions";
+import { EDITIONS, galleryImages } from "@/lib/editions";
+import { resolveAllEditions, resolveEdition } from "@/lib/editions-server";
 import { minPrice } from "@/lib/pricing";
 import Gallery from "@/components/Gallery";
 import Configurator from "@/components/Configurator";
@@ -17,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const edition = getEdition(slug);
+  const edition = resolveEdition(slug);
   if (!edition) return {};
   return {
     title: edition.title,
@@ -31,10 +32,12 @@ export default async function EditionPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const edition = getEdition(slug);
+  const edition = resolveEdition(slug);
   if (!edition) notFound();
 
-  const related = EDITIONS.filter((e) => e.slug !== edition.slug).slice(0, 3);
+  const related = resolveAllEditions()
+    .filter((e) => e.slug !== edition.slug)
+    .slice(0, 3);
   const images = galleryImages(edition);
 
   const productJsonLd = {

@@ -1,6 +1,6 @@
-# Red Waves, Edition 02
+# Red waves
 
-Drop the 5 product photos for **Red Waves** into this folder, named:
+Drop your product photos here, named:
 
 ```
 01.jpg   <- cover (used on the catalogue grid)
@@ -10,16 +10,6 @@ Drop the 5 product photos for **Red Waves** into this folder, named:
 05.jpg
 ```
 
-Then enable them in `lib/editions.ts` by setting:
-
-```ts
-images: [
-  "/editions/red-waves/01.jpg",
-  "/editions/red-waves/02.jpg",
-  "/editions/red-waves/03.jpg",
-  "/editions/red-waves/04.jpg",
-  "/editions/red-waves/05.jpg",
-],
-```
-
-See `public/editions/README.md` for format guidance.
+The site reads this folder automatically at build time. No code
+changes needed. See `public/editions/README.md` for the full how-to
+and format guidance.

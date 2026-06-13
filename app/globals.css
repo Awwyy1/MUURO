@@ -27,14 +27,23 @@ body {
 
 /* Brand line. Reserved for "Your Visual Capital". One half-tone darker
    than nav items and notably wider tracking, so it reads as the brand
-   signature instead of another menu link. */
+   signature instead of another menu link. Mobile tightens the tracking
+   so the line fits inside the flex slot next to the cart icon. */
 .brand-line {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.32em;
-  text-indent: 0.32em;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
   text-transform: uppercase;
   color: #5a554f;
+}
+
+@media (min-width: 768px) {
+  .brand-line {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-indent: 0.32em;
+  }
 }
 
 .btn {

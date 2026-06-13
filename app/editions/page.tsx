@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EDITIONS } from "@/lib/editions";
 import ProductCard from "@/components/ProductCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { resolveAllEditions } from "@/lib/editions-server";
 
 export const metadata: Metadata = {
   title: "Editions",
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function EditionsPage() {
+  const editions = resolveAllEditions();
+
   return (
     <>
       <div className="mx-auto max-w-[1400px] px-6 pt-8 md:px-10">
@@ -18,12 +20,12 @@ export default function EditionsPage() {
       </div>
 
       <div className="mx-auto max-w-[1400px] px-6 pt-10 md:px-10">
-        <h1 className="label text-ink">All editions · 0{EDITIONS.length}</h1>
+        <h1 className="label text-ink">All editions · 0{editions.length}</h1>
       </div>
 
       <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10">
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {EDITIONS.map((edition) => (
+          {editions.map((edition) => (
             <ProductCard key={edition.slug} edition={edition} />
           ))}
 

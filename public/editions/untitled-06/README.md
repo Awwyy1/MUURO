@@ -1,6 +1,6 @@
-# Untitled 06, Edition 06
+# Untitled 06
 
-Drop the 5 product photos for **Untitled 06** into this folder, named:
+Drop your product photos here, named:
 
 ```
 01.jpg   <- cover (used on the catalogue grid)
@@ -10,16 +10,6 @@ Drop the 5 product photos for **Untitled 06** into this folder, named:
 05.jpg
 ```
 
-Then enable them in `lib/editions.ts` by setting:
-
-```ts
-images: [
-  "/editions/untitled-06/01.jpg",
-  "/editions/untitled-06/02.jpg",
-  "/editions/untitled-06/03.jpg",
-  "/editions/untitled-06/04.jpg",
-  "/editions/untitled-06/05.jpg",
-],
-```
-
-See `public/editions/README.md` for format guidance.
+The site reads this folder automatically at build time. No code
+changes needed. See `public/editions/README.md` for the full how-to
+and format guidance.

@@ -1,12 +1,15 @@
 import Link from "next/link";
-import { EDITIONS, coverImage, getCurrentDrop } from "@/lib/editions";
+import { coverImage } from "@/lib/editions";
+import { resolveAllEditions, resolveCurrentDrop } from "@/lib/editions-server";
 import FramedArtwork from "@/components/FramedArtwork";
 import ProductCard from "@/components/ProductCard";
 import Newsletter from "@/components/Newsletter";
 
 export default function Home() {
-  const drop = getCurrentDrop();
-  const teaser = EDITIONS.find((e) => e.slug === "63-sting-ray") ?? EDITIONS[1];
+  const editions = resolveAllEditions();
+  const drop = resolveCurrentDrop();
+  const teaser =
+    editions.find((e) => e.slug === "63-sting-ray") ?? editions[1];
   const dropCover = coverImage(drop);
   const teaserCover = coverImage(teaser);
   const dropHasPhotos = drop.images.length > 0;
@@ -59,7 +62,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-            {EDITIONS.map((edition) => (
+            {editions.map((edition) => (
               <ProductCard key={edition.slug} edition={edition} />
             ))}
           </div>
