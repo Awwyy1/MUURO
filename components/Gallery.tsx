@@ -4,16 +4,22 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import FramedArtwork from "./FramedArtwork";
 
 /**
- * Swipeable product gallery.
+ * Product page gallery.
  *
- * With real photography: renders the edition's `images` in order.
- * Without it: shows the framed artwork placeholder as slide 1 and four
- * distinct "photo slot" cards as slides 2 to 5, so the carousel structure
- * is visible and switching slides is obviously working.
- *
- * Navigation: swipe on touch devices, chevrons in the side gutters on
- * desktop (never overlapping the image), dots underneath, arrow keys.
+ * Like the catalogue card carousel, this is a translateX track: all
+ * photos are rendered side by side and switching slides is a CSS
+ * transform, with no per-swipe network or decode pause. The framed
+ * placeholder shown when no real photography exists yet still gets the
+ * "01" leading slide plus four "upload XX.jpg" slot cards.
  */
+
+const PLACEHOLDER_SLOTS = [
+  "/placeholders/photo-02.svg",
+  "/placeholders/photo-03.svg",
+  "/placeholders/photo-04.svg",
+  "/placeholders/photo-05.svg",
+];
+
 export default function Gallery({
   images,
   title,
@@ -26,13 +32,7 @@ export default function Gallery({
   const isFallback = images.length === 0;
   const slides = isFallback
     ? fallback
-      ? [
-          fallback,
-          "/placeholders/photo-02.svg",
-          "/placeholders/photo-03.svg",
-          "/placeholders/photo-04.svg",
-          "/placeholders/photo-05.svg",
-        ]
+      ? [fallback, ...PLACEHOLDER_SLOTS]
       : []
     : images;
 
@@ -70,30 +70,49 @@ export default function Gallery({
 
   if (slides.length === 0) return null;
 
-  const framedSlide = isFallback && index === 0;
-
   return (
     <div className="flex flex-col gap-3">
       <div
-        className="relative flex items-center justify-center bg-wall px-6 py-12 md:px-24 md:py-16"
+        className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-wall md:px-24"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        <div className="w-full max-w-[460px]">
-          {framedSlide ? (
-            <FramedArtwork src={slides[0]} alt={title} />
-          ) : (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={slides[index]}
-              alt={`${title}, view ${index + 1} of ${slides.length}`}
-              className="block h-auto w-full"
-            />
-          )}
+        <div
+          className="flex h-full w-full transition-transform duration-[260ms] ease-out will-change-transform"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {slides.map((src, i) => (
+            <div
+              key={i}
+              className="flex h-full w-full shrink-0 items-center justify-center"
+            >
+              {isFallback && i === 0 ? (
+                <div className="w-full max-w-[460px] p-6 md:p-10">
+                  <FramedArtwork src={src} alt={title} />
+                </div>
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={src}
+                  alt={
+                    i === index
+                      ? `${title}, view ${i + 1} of ${slides.length}`
+                      : ""
+                  }
+                  decoding="async"
+                  fetchPriority={i === 0 ? "high" : "auto"}
+                  draggable={false}
+                  className={
+                    isFallback
+                      ? "block max-w-[460px] select-none"
+                      : "block h-full w-full select-none object-cover"
+                  }
+                />
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Desktop chevrons live in the side gutters created by md:px-24,
-            so they never sit on top of the image. Mobile is swipe only. */}
         {slides.length > 1 && (
           <>
             <button
@@ -112,23 +131,21 @@ export default function Gallery({
             >
               ›
             </button>
-          </>
-        )}
 
-        {slides.length > 1 && (
-          <div
-            className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2"
-            aria-hidden="true"
-          >
-            {slides.map((_, i) => (
-              <span
-                key={i}
-                className={`h-[3px] w-6 transition-colors ${
-                  i === index ? "bg-ink" : "bg-edge"
-                }`}
-              />
-            ))}
-          </div>
+            <div
+              className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2"
+              aria-hidden="true"
+            >
+              {slides.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-[3px] w-6 transition-colors ${
+                    i === index ? "bg-ink" : "bg-edge"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
         )}
       </div>
 
@@ -149,6 +166,8 @@ export default function Gallery({
               <img
                 src={src}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="block aspect-[4/5] w-full object-cover"
               />
             </button>
