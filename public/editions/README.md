@@ -8,16 +8,15 @@ files in, commit, and the site updates itself.
 ## File convention
 
 Each edition has its own folder named after its slug. Drop JPGs in,
-named `01.jpg` to `05.jpg`:
+named `01.jpg` to `10.jpg`:
 
 ```
 public/editions/
   the-outlier/
     01.jpg
     02.jpg
-    03.jpg
-    04.jpg
-    05.jpg
+    ...
+    10.jpg
   63-sting-ray/
     01.jpg
     ...
@@ -36,13 +35,15 @@ them.
    `public/editions/the-outlier/`.
 2. Click **Add file → Upload files**.
 3. Drag in your photos. **File names must be** `01.jpg`, `02.jpg`,
-   `03.jpg`, `04.jpg`, `05.jpg`. Lower-case, no spaces.
+   ..., `10.jpg`. Lower-case, no spaces.
 4. Commit the upload directly to `main`.
 5. Vercel rebuilds in 1 to 2 minutes. The new photography appears
    on `muuro.co` automatically.
 
-You can upload fewer than five files. If only `01.jpg` and `02.jpg`
-exist, the gallery shows two slides instead of five.
+You can upload **fewer than ten** files and add the rest later. If
+only `01.jpg` and `02.jpg` exist, the gallery shows two slides.
+Whenever a new numbered file appears in the folder, it slots into the
+carousel on the next deploy.
 
 `.png` and `.webp` work too; the matcher accepts `01.jpg`, `01.jpeg`,
 `01.png`, `01.webp`.

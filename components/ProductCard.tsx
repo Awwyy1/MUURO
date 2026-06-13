@@ -174,13 +174,13 @@ export default function ProductCard({ edition }: { edition: Edition }) {
             </button>
 
             <div
-              className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5"
+              className="pointer-events-none absolute bottom-3 left-1/2 flex max-w-[80%] -translate-x-1/2 flex-wrap items-center justify-center gap-1"
               aria-hidden="true"
             >
               {slides.map((_, i) => (
                 <span
                   key={i}
-                  className={`h-[2px] w-4 transition-colors ${
+                  className={`h-[2px] w-3 transition-colors ${
                     i === index ? "bg-ink" : "bg-edge"
                   }`}
                 />

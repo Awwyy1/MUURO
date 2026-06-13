@@ -18,6 +18,11 @@ const PLACEHOLDER_SLOTS = [
   "/placeholders/photo-03.svg",
   "/placeholders/photo-04.svg",
   "/placeholders/photo-05.svg",
+  "/placeholders/photo-06.svg",
+  "/placeholders/photo-07.svg",
+  "/placeholders/photo-08.svg",
+  "/placeholders/photo-09.svg",
+  "/placeholders/photo-10.svg",
 ];
 
 export default function Gallery({
@@ -133,13 +138,13 @@ export default function Gallery({
             </button>
 
             <div
-              className="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2"
+              className="pointer-events-none absolute bottom-4 left-1/2 flex max-w-[90%] -translate-x-1/2 flex-wrap items-center justify-center gap-1.5"
               aria-hidden="true"
             >
               {slides.map((_, i) => (
                 <span
                   key={i}
-                  className={`h-[3px] w-6 transition-colors ${
+                  className={`h-[2px] w-5 transition-colors ${
                     i === index ? "bg-ink" : "bg-edge"
                   }`}
                 />

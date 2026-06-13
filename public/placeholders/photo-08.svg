@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#f3efe7"/>
+  <rect x="44" y="44" width="512" height="752" fill="none" stroke="#c9c2b0" stroke-width="1.5"/>
+  <text x="300" y="400" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="84" font-weight="300" fill="#c9c2b0">08</text>
+  <text x="300" y="452" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" letter-spacing="4" fill="#8a857c">PHOTO SLOT</text>
+  <text x="300" y="478" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10" letter-spacing="3" fill="#b5ab9b">UPLOAD 08.JPG</text>
+</svg>
