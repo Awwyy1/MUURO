@@ -69,8 +69,8 @@ export default function Configurator({ slug }: { slug: string }) {
         disabledIds={frameId === "none" ? ["backlit"] : []}
       />
 
-      <div className="max-md:sticky max-md:bottom-0 max-md:-mx-6 max-md:border-t max-md:border-hairline max-md:bg-paper max-md:px-6 max-md:py-4">
-        <div className="flex items-center justify-between border-t border-hairline pt-4 max-md:border-t-0 max-md:pt-0">
+      <div className="mt-2">
+        <div className="flex items-center justify-between border-t border-hairline pt-4">
           <span className="label text-ink">Total</span>
           <span className="text-[20px] font-medium">{formatEur(total)}</span>
         </div>
