@@ -15,7 +15,7 @@ Drop product photos here, named:
 10.jpg
 ```
 
-You can add them gradually — the gallery shows whatever is here, in
+You can add them gradually. The gallery shows whatever is here, in
 order. The site reads this folder automatically at build time. No
 code changes needed. See `public/editions/README.md` for the full
 how-to and format guidance.

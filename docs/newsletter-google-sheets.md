@@ -20,7 +20,7 @@ over later by just swapping environment variables.
 
 ### 1. Create the sheet
 
-1. Go to [sheets.new](https://sheets.new) — opens a blank sheet.
+1. Go to [sheets.new](https://sheets.new). Opens a blank sheet.
 2. Rename the file to `MUURO Newsletter`.
 3. In row 1 put the headers, one per column:
 
@@ -117,9 +117,9 @@ over later by just swapping environment variables.
    - Name: `GOOGLE_SHEET_WEBHOOK_URL`
    - Value: paste the Web app URL from step 3
    - Environments: tick **Production**, **Preview**, **Development**.
-3. Save. Vercel does not auto-redeploy on env changes — go to
+3. Save. Vercel does not auto-redeploy on env changes. Go to
    **Deployments**, find the latest production deploy, click the
-   three-dot menu → **Redeploy**.
+   three-dot menu, then **Redeploy**.
 
 That's it. The form on `muuro.co` will start writing to the sheet on
 the next sign-up.
@@ -134,7 +134,7 @@ the next sign-up.
    email.
 
 If the form shows "Sign-up opens with the first drop. Follow @muuro.co"
-instead, the env var is not yet visible to the deployment — confirm
+instead, the env var is not yet visible to the deployment. Confirm
 you redeployed after adding it.
 
 ## Updating the script later
@@ -170,5 +170,5 @@ Web App URL is unguessable but not authenticated, so do not commit it
 to git. The Vercel env var is the right place.
 
 The `/privacy` page already describes newsletter processing in plain
-language and cites GDPR Art. 6(1)(a) — consent. Keep that reference
+language and cites GDPR Art. 6(1)(a), consent. Keep that reference
 when switching providers.

@@ -6,7 +6,7 @@ import { EDITIONS, type Edition } from "./editions";
  * Server-only helpers that resolve an edition's photography by reading the
  * filesystem at build time. Operators drop files into
  *   public/editions/<slug>/01.jpg, 02.jpg, …
- * and the catalogue picks them up automatically — no TypeScript edits.
+ * and the catalogue picks them up automatically, no TypeScript edits.
  *
  * Files are matched by the strict pattern: two digits, then .jpg / .jpeg /
  * .png / .webp, lower-case. They are returned sorted, so 01.jpg leads,

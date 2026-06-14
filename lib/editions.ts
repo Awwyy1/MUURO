@@ -89,9 +89,9 @@ export const EDITIONS: Edition[] = [
     editionSize: 100,
     basePrice: 220,
     short:
-      "The error code as quiet monument. Every link that ever broke, every page that ever forgot itself.",
+      "Most people have seen this number more often than they would like.",
     description:
-      "404 is the most honest number on the internet — the code that names what every other page conceals. Things break. Links rot. Archives forget. The print holds it absolute: black on black, the type rotated to the edge of the frame, a small caption admitting what the piece already is. A monument to absence for anyone who has built something that disappeared, clicked a link and found nothing, watched a draft go unrecovered. Half of digital life is the half that no longer answers; this is the part of the wall that remembers it.",
+      "404 is what the browser shows when something a person made is no longer where it used to be. A dead link. A deleted draft. A project that quietly went offline one Tuesday and never came back. We took the format every browser uses and made it a print. Black background, oversized type laid sideways, a thin caption at the bottom that names what you are looking at. Some people will hang it as a joke. Some people will hang it because they build for the web and watch things disappear, and at that point the joke is not really a joke. Both readings work for us.",
     images: [],
     status: "available",
   },
@@ -103,9 +103,10 @@ export const EDITIONS: Edition[] = [
     year: 2025,
     editionSize: 100,
     basePrice: 220,
-    short: "One kiss. Vermilion. Irrevocable.",
+    short:
+      "A playing card with most of the card missing and a kiss in its place.",
     description:
-      "Femme Fatale. The single kiss that ended an era and never was repeated — vermilion pressed to ivory paper, the only signature of a woman whose name nobody can quite name and nobody quite forgets. Framed as evidence, hung as warning. The Queen of Spades in absentia: the card without the face, the seal without the sender, the imprint of an encounter no one walks away from intact. For the wall of someone who knows that certain people leave a mark instead of a memory.",
+      "A Queen of Spades with almost everything taken out. The Q stays in the corner. The spade stays. The kiss is the rest of it. We kept thinking about the kind of woman who turns up in noir novels and old films and leaves before anyone gets a straight answer about who she actually was, and what it would mean to keep that on a wall as a piece of paper instead of a story. The lipstick was scanned from real lipstick on real paper, not drawn. Belongs in a hallway, above a dresser, next to a mirror. Does not belong in a child's room.",
     images: [],
     status: "available",
   },

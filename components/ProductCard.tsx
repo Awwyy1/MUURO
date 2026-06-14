@@ -13,7 +13,7 @@ import FramedArtwork from "./FramedArtwork";
  * in a 500% wide row inside an overflow-hidden viewport. Switching slides
  * is a CSS transform, GPU-accelerated, with no network request and no
  * image-decode pause after first paint. This is the pattern used by
- * Shopify, Instagram, Linear et al. — once a file is decoded, swiping is
+ * Shopify, Instagram, Linear and others. Once a file is decoded, swiping is
  * effectively a 16 ms animation.
  *
  * Photos 02..05 only get their src after the card enters the viewport
