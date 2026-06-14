@@ -68,14 +68,16 @@ export default async function EditionPage({
         />
       </div>
 
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-6 py-10 md:px-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
-        <Gallery
-          images={edition.images}
-          title={edition.title}
-          fallback={`/editions/${edition.slug}.svg`}
-        />
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-6 py-10 md:px-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+        <div className="min-w-0">
+          <Gallery
+            images={edition.images}
+            title={edition.title}
+            fallback={`/editions/${edition.slug}.svg`}
+          />
+        </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex min-w-0 flex-col gap-6">
           <div>
             <div className="label">
               Edition {edition.number} · Limited to {edition.editionSize}, signed
