@@ -88,10 +88,9 @@ export const EDITIONS: Edition[] = [
     year: 2025,
     editionSize: 100,
     basePrice: 220,
-    short:
-      "Most people have seen this number more often than they would like.",
+    short: "404. Black on black. The page every browser has shown.",
     description:
-      "404 is what the browser shows when something a person made is no longer where it used to be. A dead link. A deleted draft. A project that quietly went offline one Tuesday and never came back. We took the format every browser uses and made it a print. Black background, oversized type laid sideways, a thin caption at the bottom that names what you are looking at. Some people will hang it as a joke. Some people will hang it because they build for the web and watch things disappear, and at that point the joke is not really a joke. Both readings work for us.",
+      "404 is what the browser shows when something a person made is no longer where it used to be. A dead link, a deleted draft, a project that quietly went offline. We took the format every browser uses and made it a print, black on black with the type laid sideways.",
     images: [],
     status: "available",
   },
@@ -103,10 +102,9 @@ export const EDITIONS: Edition[] = [
     year: 2025,
     editionSize: 100,
     basePrice: 220,
-    short:
-      "A playing card with most of the card missing and a kiss in its place.",
+    short: "Queen of Spades. Most of the card stripped. A kiss in the middle.",
     description:
-      "A Queen of Spades with almost everything taken out. The Q stays in the corner. The spade stays. The kiss is the rest of it. We kept thinking about the kind of woman who turns up in noir novels and old films and leaves before anyone gets a straight answer about who she actually was, and what it would mean to keep that on a wall as a piece of paper instead of a story. The lipstick was scanned from real lipstick on real paper, not drawn. Belongs in a hallway, above a dresser, next to a mirror. Does not belong in a child's room.",
+      "A Queen of Spades with almost everything removed. The Q stays. The spade stays. The kiss is the rest of it, scanned from real lipstick on real paper, not drawn. Belongs in a hallway, above a dresser. Does not belong in a child's room.",
     images: [],
     status: "available",
   },
