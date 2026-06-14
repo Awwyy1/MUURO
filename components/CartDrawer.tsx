@@ -138,7 +138,7 @@ export default function CartDrawer() {
             </div>
             <div className="mt-2 flex justify-between">
               <span className="label">Shipping</span>
-              <span className="label">Free · launch period</span>
+              <span className="label">Calculated at checkout</span>
             </div>
             <Link
               href="/checkout"

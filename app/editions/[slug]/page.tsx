@@ -123,11 +123,13 @@ export default async function EditionPage({
             <details className="spec border-y border-hairline">
               <summary>Shipping and returns</summary>
               <p className="pb-5 text-[14px] leading-[1.7] text-[#444]">
-                Free worldwide shipping during the launch period. Dispatched
-                within 3 to 5 working days. Delivery 5 to 9 days in the EU, 7
-                to 14 days worldwide. Framed editions travel in rigid art
-                crates. 14 day return right; the piece must come back in its
-                original crate.
+                Shipped from Berlin via DHL. Cost is calculated at checkout
+                based on destination and configuration. Dispatched within 3
+                to 5 working days. Delivery 5 to 9 days in the EU, 7 to 14
+                days worldwide. Framed editions travel in rigid art crates.
+                14 day return right; the piece must come back in its
+                original crate. Customs duties outside the EU are the
+                recipient's responsibility.
               </p>
             </details>
           </div>

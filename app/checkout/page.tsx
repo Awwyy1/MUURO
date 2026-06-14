@@ -153,7 +153,7 @@ export default function CheckoutPage() {
             </div>
             <div className="flex justify-between">
               <span className="label">Shipping</span>
-              <span className="label">Free, launch period</span>
+              <span className="label">Calculated at checkout</span>
             </div>
             <div className="flex justify-between">
               <span className="label">VAT</span>
