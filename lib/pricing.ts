@@ -7,15 +7,15 @@ export interface PriceOption {
 }
 
 export const SIZES: PriceOption[] = [
-  { id: "a3", label: "A3 · 30 × 42 cm", delta: 0 },
-  { id: "a2", label: "A2 · 42 × 60 cm", delta: 100 },
-  { id: "a1", label: "A1 · 60 × 84 cm", delta: 240 },
+  { id: "a3", label: "A3 (30 × 42 cm)", delta: 0 },
+  { id: "a2", label: "A2 (42 × 60 cm)", delta: 100 },
+  { id: "a1", label: "A1 (60 × 84 cm)", delta: 240 },
 ];
 
 export const FRAMES: PriceOption[] = [
   { id: "black", label: "Matte black", delta: 0 },
   { id: "silver", label: "Brushed silver", delta: 0 },
-  { id: "none", label: "Print only", delta: -70 },
+  { id: "none", label: "Print only", delta: 0 },
 ];
 
 export const LIGHTS: PriceOption[] = [
@@ -28,6 +28,19 @@ export const LIGHTS: PriceOption[] = [
  * does not carry enough depth for it. Backlit is only offered from A2.
  */
 export const BACKLIT_SIZE_REQUIREMENT = new Set(["a2", "a1"]);
+
+/**
+ * Print-only price ladder is independent from the framed ladder. The
+ * tubed product scales more gently with size than a framed piece (no
+ * frame, no glass, lighter packaging), so the step per format is held
+ * to about EUR 70 instead of the EUR 100/140 the framed ladder uses.
+ */
+const PRINT_BASE_DISCOUNT = 70;
+const PRINT_SIZE_DELTA: Record<string, number> = {
+  a3: 0,
+  a2: 70,
+  a1: 140,
+};
 
 function find(options: PriceOption[], id: string, kind: string): PriceOption {
   const option = options.find((o) => o.id === id);
@@ -49,18 +62,24 @@ export function unitPrice(
   if (!edition || edition.status !== "available")
     throw new Error(`Edition not available: ${slug}`);
   const size = find(SIZES, sizeId, "size");
-  const frame = find(FRAMES, frameId, "frame");
   const light = find(LIGHTS, lightId, "light");
-  if (frame.id === "none" && light.id === "backlit")
-    throw new Error("Backlit requires a frame");
-  if (light.id === "backlit" && !BACKLIT_SIZE_REQUIREMENT.has(size.id))
-    throw new Error("Backlit is not available at this size");
+  if (light.id === "backlit") {
+    if (frameId === "none") throw new Error("Backlit requires a frame");
+    if (!BACKLIT_SIZE_REQUIREMENT.has(size.id))
+      throw new Error("Backlit is not available at this size");
+  }
+  if (frameId === "none") {
+    return (
+      edition.basePrice - PRINT_BASE_DISCOUNT + (PRINT_SIZE_DELTA[size.id] ?? 0)
+    );
+  }
+  const frame = find(FRAMES, frameId, "frame");
   return edition.basePrice + size.delta + frame.delta + light.delta;
 }
 
 export function minPrice(basePrice: number): number {
-  const printOnly = FRAMES.find((f) => f.id === "none")?.delta ?? 0;
-  return basePrice + printOnly;
+  // Cheapest configuration is A3 print only.
+  return basePrice - PRINT_BASE_DISCOUNT;
 }
 
 export function describeConfig(
