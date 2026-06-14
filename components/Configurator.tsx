@@ -30,7 +30,6 @@ function OptionGroup({
             className={`chip ${value === option.id ? "chip-on" : ""}`}
           >
             {option.label}
-            {option.delta > 0 && ` · +${formatEur(option.delta).slice(1)}€`}
           </button>
         ))}
       </div>
