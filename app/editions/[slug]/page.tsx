@@ -111,13 +111,13 @@ export default async function EditionPage({
             <details className="spec border-t border-hairline">
               <summary>Dimensions and weight</summary>
               <div className="pb-5 text-[14px] leading-[1.9] text-[#444]">
-                50 × 70 cm, frame 52 × 72 cm, about 3.4 kg framed
+                A3, 30 × 42 cm, frame 32 × 44 cm, about 1.5 kg framed
                 <br />
-                70 × 100 cm, frame 72 × 102 cm, about 5.8 kg framed
+                A2, 42 × 60 cm, frame 44 × 62 cm, about 3 kg framed
                 <br />
-                100 × 140 cm, frame 102 × 142 cm, about 9.6 kg framed
+                A1, 60 × 84 cm, frame 62 × 86 cm, about 5 kg framed
                 <br />
-                Backlit adds about 0.9 kg and 26 mm profile depth.
+                Backlit option adds about 0.8 kg and sits in a 26 mm deeper Nielsen profile. Available from A2.
               </div>
             </details>
             <details className="spec border-y border-hairline">

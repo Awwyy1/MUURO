@@ -29,7 +29,7 @@ export const EDITIONS: Edition[] = [
     series: "Geometry",
     year: 2025,
     editionSize: 100,
-    basePrice: 240,
+    basePrice: 200,
     short:
       "A study in conformity and exception. Fifty four cobalt circles, one refuses.",
     description:
@@ -44,7 +44,7 @@ export const EDITIONS: Edition[] = [
     series: "Icons",
     year: 2025,
     editionSize: 100,
-    basePrice: 240,
+    basePrice: 200,
     short:
       "Nineteen sixty three. Split window. Black on black with gilded numerals.",
     description:
@@ -59,7 +59,7 @@ export const EDITIONS: Edition[] = [
     series: "Abstract",
     year: 2025,
     editionSize: 100,
-    basePrice: 220,
+    basePrice: 180,
     short: "Crimson over sand. A landscape that never existed.",
     description:
       "Layered line work in red and bone, drawn like the contour map of an imagined coast. Calm at the bottom, weather at the top. Hangs well in rooms where conversations happen.",
@@ -73,7 +73,7 @@ export const EDITIONS: Edition[] = [
     series: "Berlin Humour",
     year: 2025,
     editionSize: 100,
-    basePrice: 180,
+    basePrice: 140,
     short: "Two concerned residents. One eternal Berlin question.",
     description:
       "A cat, a giraffe, and the question every Berlin flatshare eventually asks out loud. Monochrome ink on cream. Proof that a serious wall can keep a sense of humour.",
@@ -87,7 +87,7 @@ export const EDITIONS: Edition[] = [
     series: "Cipher",
     year: 2025,
     editionSize: 100,
-    basePrice: 220,
+    basePrice: 180,
     short: "404. Black on black. The page every browser has shown.",
     description:
       "404 is what the browser shows when something a person made is no longer where it used to be. A dead link, a deleted draft, a project that quietly went offline. We took the format every browser uses and made it a print, black on black with the type laid sideways.",
@@ -101,7 +101,7 @@ export const EDITIONS: Edition[] = [
     series: "Icons",
     year: 2025,
     editionSize: 100,
-    basePrice: 220,
+    basePrice: 180,
     short: "Queen of Spades. Most of the card stripped. A kiss in the middle.",
     description:
       "A Queen of Spades with almost everything removed. The Q stays. The spade stays. The kiss is the rest of it, scanned from real lipstick on real paper, not drawn. Belongs in a hallway, above a dresser. Does not belong in a child's room.",
