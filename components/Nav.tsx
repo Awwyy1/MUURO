@@ -53,7 +53,7 @@ export default function Nav() {
       {/* The header never changes size or layout. On mobile the burger
           morphs into a close icon in the same 22px slot, and the menu
           panel slides in underneath the bar. */}
-      <header className="sticky top-0 z-40 border-b border-hairline bg-paper">
+      <header className="relative z-40 border-b border-hairline bg-paper md:sticky md:top-0">
         <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-4 md:px-10 md:py-5">
           <Link
             href="/"
