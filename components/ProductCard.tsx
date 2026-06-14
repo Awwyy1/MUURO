@@ -111,7 +111,7 @@ export default function ProductCard({ edition }: { edition: Edition }) {
       >
         {multi ? (
           <div
-            className="flex h-full w-full transition-transform duration-[260ms] ease-out will-change-transform"
+            className="flex h-full w-full transition-transform duration-[260ms] ease-out"
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
             {slides.map((src, i) => (

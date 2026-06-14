@@ -89,9 +89,9 @@ export const EDITIONS: Edition[] = [
     editionSize: 100,
     basePrice: 220,
     short:
-      "Four zero four. A study in absence. The most familiar number on the internet, set as object.",
+      "The error code as quiet monument. Every link that ever broke, every page that ever forgot itself.",
     description:
-      "The error code as wall piece. Black absolute, type rotated to the edge of the frame, a small caption that admits what the picture already is. Equal parts joke and statement, equal parts memo to anyone who has ever shipped a broken link. For builders, for readers, for the room of someone who remembers what the early web felt like.",
+      "404 is the most honest number on the internet — the code that names what every other page conceals. Things break. Links rot. Archives forget. The print holds it absolute: black on black, the type rotated to the edge of the frame, a small caption admitting what the piece already is. A monument to absence for anyone who has built something that disappeared, clicked a link and found nothing, watched a draft go unrecovered. Half of digital life is the half that no longer answers; this is the part of the wall that remembers it.",
     images: [],
     status: "available",
   },
@@ -103,10 +103,9 @@ export const EDITIONS: Edition[] = [
     year: 2025,
     editionSize: 100,
     basePrice: 220,
-    short:
-      "Queen of Spades. Lipstick where the face should be. Knowing, ambiguous, unanswerable.",
+    short: "One kiss. Vermilion. Irrevocable.",
     description:
-      "A playing card reimagined as portrait. The Queen of Spades with a single stroke of vermilion in place of the face — a kiss as signature, the rest left to the viewer. Ivory paper, black ink, one note of red. The kind of object that changes a room without explaining itself.",
+      "Femme Fatale. The single kiss that ended an era and never was repeated — vermilion pressed to ivory paper, the only signature of a woman whose name nobody can quite name and nobody quite forgets. Framed as evidence, hung as warning. The Queen of Spades in absentia: the card without the face, the seal without the sender, the imprint of an encounter no one walks away from intact. For the wall of someone who knows that certain people leave a mark instead of a memory.",
     images: [],
     status: "available",
   },

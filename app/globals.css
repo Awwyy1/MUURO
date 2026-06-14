@@ -9,11 +9,23 @@
   --color-edge: #c9c2b0;
 }
 
+html {
+  /* Prevents the iOS rubber-band that the user saw as the page
+     "floating" up and down on product pages with short content. */
+  overscroll-behavior-y: contain;
+}
+
 body {
   background: var(--color-paper);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Disables iOS double-tap-zoom (which was being triggered by stray
+     taps on the gallery imagery) while keeping pinch-zoom for
+     accessibility. */
+  touch-action: manipulation;
+  /* Stops the ugly grey flash iOS paints over tapped surfaces. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Small uppercase label. Workhorse of the identity. */
