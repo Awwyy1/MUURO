@@ -19,8 +19,7 @@ export default function ImpressumPage() {
           <p>
             MUURO is in pre-launch. A full Impressum, with the registered
             legal entity and its postal address, will be published on this
-            page once that entity is in place. The current target is an
-            Estonian OÜ, expected to be live within the next few weeks.
+            page once that entity is in place.
           </p>
           <p>
             Until then this site does not process payments and does not
