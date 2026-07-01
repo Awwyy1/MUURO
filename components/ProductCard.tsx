@@ -7,24 +7,22 @@ import { formatEur, minPrice } from "@/lib/pricing";
 import FramedArtwork from "./FramedArtwork";
 
 /**
- * Catalogue card with an in-place mini gallery.
+ * Catalogue card with an in-place mini gallery and hover swap.
  *
- * The carousel is a translateX track: all photos are rendered side by side
- * in a 500% wide row inside an overflow-hidden viewport. Switching slides
- * is a CSS transform, GPU-accelerated, with no network request and no
- * image-decode pause after first paint. This is the pattern used by
- * Shopify, Instagram, Linear and others. Once a file is decoded, swiping is
- * effectively a 16 ms animation.
+ * Resting state shows the cover (slide 0). On a mouse-capable device,
+ * hovering the card fades to the room scene (slide 1) so the visitor
+ * sees the piece on a wall without leaving the listing, the way Desenio
+ * and similar shops do it.
  *
- * Photos 02..05 only get their src after the card enters the viewport
- * (IntersectionObserver, 300 px root margin), so we don't fire 30 image
- * requests on first paint of a six-card grid. By the time the visitor
- * scrolls to a card and starts swiping, its photos are already loading
- * (or cached) in the background.
+ * The manual controls stay fully alive: clicking a chevron, tapping a
+ * dot or swiping puts the card into manual mode and steps through every
+ * photo of the edition. Leaving the card resets it to the cover. A tap
+ * that is not a swipe still opens the product page via the wrapping Link.
  *
- * Tap-vs-swipe is disambiguated by horizontal delta: a > 40 px horizontal
- * move that dominates the vertical move is treated as a swipe and the
- * synthetic click that follows is cancelled, so the Link does not fire.
+ * displayIndex is the single source of truth for what is on screen:
+ *   manual navigation  -> the explicitly chosen index
+ *   hover, no manual   -> slide 1 (room scene) if it exists
+ *   resting            -> slide 0 (cover)
  */
 export default function ProductCard({ edition }: { edition: Edition }) {
   const hasPhotos = edition.images.length > 0;
@@ -32,6 +30,8 @@ export default function ProductCard({ edition }: { edition: Edition }) {
   const multi = slides.length > 1;
 
   const [index, setIndex] = useState(0);
+  const [manualNav, setManualNav] = useState(false);
+  const [hovering, setHovering] = useState(false);
   const [preloadReady, setPreloadReady] = useState(false);
 
   const cardRef = useRef<HTMLAnchorElement>(null);
@@ -55,19 +55,27 @@ export default function ProductCard({ edition }: { edition: Edition }) {
     return () => observer.disconnect();
   }, [multi]);
 
-  function go(next: number) {
+  const displayIndex = manualNav ? index : hovering && multi ? 1 : 0;
+
+  function go(target: number) {
     if (!multi) return;
-    setIndex(((next % slides.length) + slides.length) % slides.length);
+    setManualNav(true);
+    setIndex(((target % slides.length) + slides.length) % slides.length);
+  }
+
+  function onEnter() {
+    setHovering(true);
+  }
+  function onLeave() {
+    setHovering(false);
+    setManualNav(false);
+    setIndex(0);
   }
 
   function onTouchStart(e: React.TouchEvent) {
-    touchStart.current = {
-      x: e.touches[0].clientX,
-      y: e.touches[0].clientY,
-    };
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
     swiping.current = false;
   }
-
   function onTouchEnd(e: React.TouchEvent) {
     if (!touchStart.current) return;
     const dx = e.changedTouches[0].clientX - touchStart.current.x;
@@ -75,7 +83,7 @@ export default function ProductCard({ edition }: { edition: Edition }) {
     touchStart.current = null;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
       swiping.current = true;
-      go(dx < 0 ? index + 1 : index - 1);
+      go(displayIndex + (dx < 0 ? 1 : -1));
       window.setTimeout(() => {
         swiping.current = false;
       }, 250);
@@ -93,7 +101,7 @@ export default function ProductCard({ edition }: { edition: Edition }) {
     return (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      go(index + delta);
+      go(displayIndex + delta);
     };
   }
 
@@ -102,6 +110,8 @@ export default function ProductCard({ edition }: { edition: Edition }) {
       ref={cardRef}
       href={`/editions/${edition.slug}`}
       onClickCapture={onLinkClickCapture}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
       className="group flex flex-col gap-4"
     >
       <div
@@ -111,17 +121,17 @@ export default function ProductCard({ edition }: { edition: Edition }) {
       >
         {multi ? (
           <div
-            className="flex h-full w-full transition-transform duration-[260ms] ease-out"
-            style={{ transform: `translateX(-${index * 100}%)` }}
+            className="flex h-full w-full transition-transform duration-[420ms] ease-out"
+            style={{ transform: `translateX(-${displayIndex * 100}%)` }}
           >
             {slides.map((src, i) => (
               <div key={i} className="relative h-full w-full shrink-0">
-                {(i === 0 || preloadReady) && (
+                {(i <= 1 || preloadReady) && (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={src}
                     alt={
-                      i === index
+                      i === displayIndex
                         ? `${edition.title}, view ${i + 1} of ${slides.length}`
                         : ""
                     }
@@ -156,6 +166,13 @@ export default function ProductCard({ edition }: { edition: Edition }) {
 
         {multi && (
           <>
+            {/* "In the room" hint appears on hover before manual browsing */}
+            {hovering && !manualNav && (
+              <span className="pointer-events-none absolute right-3 top-3 bg-paper/85 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.16em] text-[#555] backdrop-blur-sm">
+                In the room
+              </span>
+            )}
+
             <button
               type="button"
               aria-label="Previous image"
@@ -181,7 +198,7 @@ export default function ProductCard({ edition }: { edition: Edition }) {
                 <span
                   key={i}
                   className={`h-[2px] w-3 transition-colors ${
-                    i === index ? "bg-ink" : "bg-edge"
+                    i === displayIndex ? "bg-ink" : "bg-edge"
                   }`}
                 />
               ))}
