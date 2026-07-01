@@ -120,29 +120,30 @@ export default function ProductCard({ edition }: { edition: Edition }) {
         onTouchEnd={onTouchEnd}
       >
         {multi ? (
-          <div
-            className="flex h-full w-full transition-transform duration-[420ms] ease-out"
-            style={{ transform: `translateX(-${displayIndex * 100}%)` }}
-          >
-            {slides.map((src, i) => (
-              <div key={i} className="relative h-full w-full shrink-0">
-                {(i <= 1 || preloadReady) && (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={src}
-                    alt={
-                      i === displayIndex
-                        ? `${edition.title}, view ${i + 1} of ${slides.length}`
-                        : ""
-                    }
-                    decoding="async"
-                    fetchPriority={i === 0 ? "high" : "auto"}
-                    draggable={false}
-                    className="block h-full w-full select-none object-cover"
-                  />
-                )}
-              </div>
-            ))}
+          <div className="relative h-full w-full">
+            {slides.map((src, i) =>
+              i <= 1 || preloadReady ? (
+                /* Crossfade stack: images sit on top of each other, only the
+                   active one is opaque, so switching is a fade in place with
+                   no sideways motion. */
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={i}
+                  src={src}
+                  alt={
+                    i === displayIndex
+                      ? `${edition.title}, view ${i + 1} of ${slides.length}`
+                      : ""
+                  }
+                  decoding="async"
+                  fetchPriority={i === 0 ? "high" : "auto"}
+                  draggable={false}
+                  className={`absolute inset-0 block h-full w-full select-none object-cover transition-opacity duration-500 ease-out ${
+                    i === displayIndex ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ) : null
+            )}
           </div>
         ) : hasPhotos ? (
           /* eslint-disable-next-line @next/next/no-img-element */
