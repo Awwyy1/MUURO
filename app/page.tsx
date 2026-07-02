@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { coverImage } from "@/lib/editions";
 import { resolveAllEditions, resolveCurrentDrop } from "@/lib/editions-server";
+import { formatEur, minPrice } from "@/lib/pricing";
 import FramedArtwork from "@/components/FramedArtwork";
 import ProductCard from "@/components/ProductCard";
 import Newsletter from "@/components/Newsletter";
@@ -10,46 +11,88 @@ export default function Home() {
   const drop = resolveCurrentDrop();
   const teaser =
     editions.find((e) => e.slug === "63-sting-ray") ?? editions[1];
-  const dropCover = coverImage(drop);
   const teaserCover = coverImage(teaser);
-  const dropHasPhotos = drop.images.length > 0;
   const teaserHasPhotos = teaser.images.length > 0;
+
+  // Editorial hero. The visual prefers the room scene (photo 02) so the
+  // piece is shown on a wall; the drop title splits so its last word
+  // carries the accent line.
+  const heroImage = drop.images[1] ?? drop.images[0] ?? null;
+  const titleParts = drop.title.split(" ");
+  const titleHead =
+    titleParts.length > 1 ? titleParts.slice(0, -1).join(" ") : "";
+  const titleTail =
+    titleParts.length > 1 ? titleParts[titleParts.length - 1] : drop.title;
 
   return (
     <>
-      <section className="grid min-h-[540px] lg:grid-cols-2">
-        <div className="flex items-center justify-center bg-wall px-10 py-16 lg:py-20">
-          {dropHasPhotos ? (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={dropCover}
-              alt={drop.title}
-              className="block w-full max-w-[420px]"
-            />
-          ) : (
-            <FramedArtwork
-              src={dropCover}
-              alt={drop.title}
-              className="w-full max-w-[420px]"
-            />
-          )}
-        </div>
-        <div className="flex flex-col justify-center gap-6 px-6 py-14 md:px-14 lg:py-20">
-          <div className="label">
-            Current drop · Edition {drop.number} · 1 of {drop.editionSize}
+      <section className="grid min-h-[540px] lg:grid-cols-[44fr_56fr]">
+        {/* Editorial text column */}
+        <div className="flex flex-col justify-center px-6 py-14 md:px-12 lg:py-16">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-ink" aria-hidden="true" />
+            <span className="label">
+              Current drop · Edition {drop.number} · 1 of {drop.editionSize}
+            </span>
           </div>
-          <h1 className="text-[44px] font-medium leading-[1.04] tracking-[-0.01em] md:text-[58px]">
-            {drop.title}.
+          <h1 className="mt-7 text-[52px] font-semibold leading-[0.98] tracking-[-0.02em] md:text-[72px] lg:text-[84px]">
+            {titleHead && <span className="block">{titleHead}</span>}
+            <span className="block text-[#2f36e8]">{titleTail}.</span>
           </h1>
-          <p className="max-w-[440px] text-[15px] leading-[1.7] text-[#333]">
-            {drop.short} Hahnemühle Photo Rag, Nielsen aluminium, backlit
-            available. Signed and numbered.
+          <p className="mt-7 max-w-[38ch] text-[15px] leading-[1.7] text-[#333]">
+            {drop.short}
           </p>
-          <div>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+            <div>
+              <div className="text-[14px] font-semibold">Hahnemühle 308</div>
+              <div className="label mt-1">Archival paper</div>
+            </div>
+            <div>
+              <div className="text-[14px] font-semibold">Nielsen</div>
+              <div className="label mt-1">Aluminium frame</div>
+            </div>
+            <div>
+              <div className="text-[14px] font-semibold">
+                / {drop.editionSize}
+              </div>
+              <div className="label mt-1">Signed and numbered</div>
+            </div>
+          </div>
+          <div className="mt-9">
             <Link href={`/editions/${drop.slug}`} className="btn">
               Discover the edition →
             </Link>
           </div>
+        </div>
+
+        {/* Full-bleed room scene */}
+        <div className="relative min-h-[380px] bg-wall lg:min-h-0">
+          {heroImage ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={heroImage}
+                alt={drop.title}
+                fetchPriority="high"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute bottom-6 left-6 max-w-[250px] bg-paper/95 px-5 py-4 md:bottom-8 md:left-8">
+                <div className="text-[13px] font-semibold">{drop.title}</div>
+                <div className="mt-1 text-[12px] text-[#555]">
+                  Edition of {drop.editionSize} · from{" "}
+                  {formatEur(minPrice(drop.basePrice))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="flex h-full items-center justify-center px-10 py-16">
+              <FramedArtwork
+                src={coverImage(drop)}
+                alt={drop.title}
+                className="w-full max-w-[420px]"
+              />
+            </div>
+          )}
         </div>
       </section>
 
