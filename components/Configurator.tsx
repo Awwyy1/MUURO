@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCart } from "@/lib/cart";
 import {
   BACKLIT_SIZE_REQUIREMENT,
+  DEFAULT_SIZE_ID,
   FRAMES,
   LIGHTS,
   SIZES,
@@ -51,7 +52,7 @@ function OptionGroup({
 
 export default function Configurator({ slug }: { slug: string }) {
   const { addItem } = useCart();
-  const [sizeId, setSizeId] = useState(SIZES[0].id);
+  const [sizeId, setSizeId] = useState(DEFAULT_SIZE_ID);
   const [frameId, setFrameId] = useState(FRAMES[0].id);
   const [lightId, setLightId] = useState(LIGHTS[0].id);
 
@@ -79,7 +80,7 @@ export default function Configurator({ slug }: { slug: string }) {
 
   let lightNote: string | undefined;
   if (backlitBlockedBySize) {
-    lightNote = "Backlit is only available at A2 and A1, the LED needs a deeper Nielsen profile than A3 carries.";
+    lightNote = "Backlit is only available at A2 and A1, the LED needs a deeper Nielsen profile than the smaller formats carry.";
   } else if (backlitBlockedByFrame) {
     lightNote = "Backlit mounts inside the frame, choose a framed option to enable it.";
   }

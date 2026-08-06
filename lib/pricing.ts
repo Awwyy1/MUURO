@@ -7,10 +7,17 @@ export interface PriceOption {
 }
 
 export const SIZES: PriceOption[] = [
+  { id: "a4", label: "A4 (21 × 30 cm)", delta: -60 },
   { id: "a3", label: "A3 (30 × 42 cm)", delta: 0 },
   { id: "a2", label: "A2 (42 × 60 cm)", delta: 100 },
   { id: "a1", label: "A1 (60 × 84 cm)", delta: 240 },
 ];
+
+/**
+ * A3 is the reference format every basePrice is quoted against, so it
+ * stays preselected even though A4 now leads the list.
+ */
+export const DEFAULT_SIZE_ID = "a3";
 
 export const FRAMES: PriceOption[] = [
   { id: "black", label: "Matte black", delta: 0 },
@@ -37,6 +44,7 @@ export const BACKLIT_SIZE_REQUIREMENT = new Set(["a2", "a1"]);
  */
 const PRINT_BASE_DISCOUNT = 70;
 const PRINT_SIZE_DELTA: Record<string, number> = {
+  a4: -30,
   a3: 0,
   a2: 70,
   a1: 140,
@@ -78,8 +86,9 @@ export function unitPrice(
 }
 
 export function minPrice(basePrice: number): number {
-  // Cheapest configuration is A3 print only.
-  return basePrice - PRINT_BASE_DISCOUNT;
+  // Cheapest configuration is the smallest print-only sheet.
+  const smallest = Math.min(...Object.values(PRINT_SIZE_DELTA));
+  return basePrice - PRINT_BASE_DISCOUNT + smallest;
 }
 
 export function describeConfig(

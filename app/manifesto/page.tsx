@@ -32,10 +32,9 @@ export default function ManifestoPage() {
             number of prints.
           </p>
           <p>
-            We print on Hahnemühle archival paper. We frame in Nielsen
-            aluminium, with or without integrated perimeter light. When an
-            edition ends, it ends. We don&apos;t restock. We don&apos;t
-            discount.
+            We frame in Nielsen aluminium, with or without integrated
+            perimeter light. When an edition ends, it ends. We don&apos;t
+            restock. We don&apos;t discount.
           </p>
           <p>
             Visual capital is the part of taste you carry on the wall. The
@@ -58,10 +57,9 @@ export default function ManifestoPage() {
         </h2>
         <div className="mt-5 flex flex-col gap-6 text-[16px] leading-[1.75] text-[#333]">
           <p>
-            Each piece is produced as a giclée pigment print on Hahnemühle
-            Photo Rag 308 gsm. Matte, 100% cotton, certified archival. Every
-            print is signed and numbered. The edition size is fixed before
-            release and never extended.
+            Each piece is produced as a matte fine art print in four formats,
+            from A4 to A1. Every print is signed and numbered. The edition
+            size is fixed before release and never extended.
           </p>
           <p>
             Frames are Nielsen aluminium profiles with mitred corners and anti

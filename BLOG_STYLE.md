@@ -63,8 +63,9 @@ file wins.
 - **Editions** — stories of specific works. Why 63 Sting Ray, what The
   Outlier means. Sell through storytelling. Warmest click-through to
   product.
-- **Materials** — paper, frames, light, printing. Technical longreads.
-  Build expertise, attract the discerning reader, earn links.
+- **Materials** — frames, light, production, finishing. Technical
+  longreads. Build expertise, attract the discerning reader, earn
+  links. Do not write about paper stock or archival claims.
 - **Walls** — interior scenarios. How to hang, what size above a sofa,
   paired prints. Largest traffic volume, coldest audience.
 

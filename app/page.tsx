@@ -51,12 +51,12 @@ export default function Home() {
           </p>
           <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3 lg:mt-8 lg:gap-x-8">
             <div>
-              <div className="text-[14px] font-semibold">Hahnemühle 308</div>
-              <div className="label mt-1">Archival paper</div>
-            </div>
-            <div>
               <div className="text-[14px] font-semibold">Nielsen</div>
               <div className="label mt-1">Aluminium frame</div>
+            </div>
+            <div>
+              <div className="text-[14px] font-semibold">Backlit</div>
+              <div className="label mt-1">Optional built in light</div>
             </div>
             <div>
               <div className="text-[14px] font-semibold">
@@ -128,9 +128,8 @@ export default function Home() {
               interior is missing.
             </h2>
             <p className="mt-6 max-w-[460px] text-[15px] leading-[1.7] text-[#333]">
-              Limited drops. Archival print. Nielsen aluminium frames, with or
-              without integrated perimeter light. When an edition ends, it
-              ends.
+              Limited drops. Nielsen aluminium frames, with or without
+              integrated perimeter light. When an edition ends, it ends.
             </p>
             <Link href="/manifesto" className="btn mt-8">
               Read manifesto →

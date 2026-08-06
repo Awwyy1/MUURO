@@ -101,8 +101,8 @@ export default async function EditionPage({
             <details className="spec border-t border-hairline">
               <summary>Materials and print</summary>
               <p className="pb-5 text-[14px] leading-[1.7] text-[#444]">
-                Giclée pigment print on Hahnemühle Photo Rag 308 gsm. Matte,
-                100% cotton, age resistant archival paper. Framed in Nielsen
+                Matte fine art print with a soft, lightly textured surface
+                that holds deep blacks without glare. Framed in Nielsen
                 aluminium profile with mitred corners and anti reflective
                 acrylic glazing. The backlit option adds an integrated 24&nbsp;V
                 perimeter LED. Warm white, dimmable, plug and play.
@@ -111,6 +111,8 @@ export default async function EditionPage({
             <details className="spec border-t border-hairline">
               <summary>Dimensions and weight</summary>
               <div className="pb-5 text-[14px] leading-[1.9] text-[#444]">
+                A4, 21 × 30 cm, frame 23 × 32 cm, about 0.9 kg framed
+                <br />
                 A3, 30 × 42 cm, frame 32 × 44 cm, about 1.5 kg framed
                 <br />
                 A2, 42 × 60 cm, frame 44 × 62 cm, about 3 kg framed
