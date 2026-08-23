@@ -131,10 +131,9 @@ export const EDITIONS: Edition[] = [
     year: 2025,
     editionSize: 100,
     basePrice: 180,
-    short:
-      "DO is printed. IT is the hole in the middle. The rest is on you.",
+    short: "No advice, no five steps. The instruction, and nothing else.",
     description:
-      "The shortest instruction anybody has ever needed, printed as two marks. D and O carry the ink. I and T are the counters, the holes the black leaves inside them, so from the doorway the sheet says DO and up close it finishes the sentence. Nothing else is on the paper. No quote, no explanation, no small print, because every extra word is one more thing to read instead of starting. Hang it where you actually stall. Over the desk, beside the door, opposite the chair you sit in while you decide.",
+      "Everything you have not started is still sitting where you left it. The message you did not send, the file you did not open, the thing that moves to next week every week. This one hangs in the room and does not negotiate with you. No advice, no five steps, no quote from somebody successful, no soft landing. Put it where you sit down to decide, and watch how much shorter the deciding gets.",
     images: [],
     status: "available",
   },
