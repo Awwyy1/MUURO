@@ -41,7 +41,10 @@ them.
    on `muuro.co` automatically.
 
 You can upload **fewer than ten** files and add the rest later. If
-only `01.jpg` and `02.jpg` exist, the gallery shows two slides.
+only `01.jpg` and `02.jpg` exist, the gallery shows two slides. While
+a folder is still empty, the card and the gallery show numbered
+"upload 01.jpg" slot cards, so an edition without photography reads
+as a to do rather than a broken page.
 Whenever a new numbered file appears in the folder, it slots into the
 carousel on the next deploy.
 
