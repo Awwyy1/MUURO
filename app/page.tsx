@@ -106,7 +106,9 @@ export default function Home() {
       <section className="hairline">
         <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
           <div className="flex items-baseline justify-between">
-            <h2 className="label text-ink">Editions available · 06</h2>
+            <h2 className="label text-ink">
+              Editions available · {String(editions.length).padStart(2, "0")}
+            </h2>
             <Link href="/editions" className="label transition-colors hover:text-ink">
               View all →
             </Link>

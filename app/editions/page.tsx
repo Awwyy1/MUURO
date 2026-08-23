@@ -20,7 +20,9 @@ export default function EditionsPage() {
       </div>
 
       <div className="mx-auto max-w-[1400px] px-6 pt-10 md:px-10">
-        <h1 className="label text-ink">All editions · 0{editions.length}</h1>
+        <h1 className="label text-ink">
+          All editions · {String(editions.length).padStart(2, "0")}
+        </h1>
       </div>
 
       <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10">
@@ -33,7 +35,9 @@ export default function EditionsPage() {
             href="/#newsletter"
             className="group flex min-h-[360px] flex-col items-center justify-center gap-5 border border-dashed border-edge px-8 text-center transition-colors hover:border-ink"
           >
-            <span className="label">Edition 07</span>
+            <span className="label">
+              Edition {String(editions.length + 1).padStart(2, "0")}
+            </span>
             <span className="text-[18px] font-medium">Next drop in preparation</span>
             <span className="label underline underline-offset-4 transition-colors group-hover:text-ink">
               Notify me

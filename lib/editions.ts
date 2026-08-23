@@ -108,6 +108,34 @@ export const EDITIONS: Edition[] = [
     images: [],
     status: "available",
   },
+  {
+    slug: "dot",
+    title: "DOT",
+    number: "07",
+    series: "Cipher",
+    year: 2026,
+    editionSize: 100,
+    basePrice: 180,
+    short: "Three letters in two shapes. The O and the T never separate.",
+    description:
+      "The word is DOT, set in two shapes instead of three, because the O and the T share one square and neither of them gives way. Look once and it is a letterform exercise. Look again and it is the smallest unit every other mark is built from, standing a metre tall on a wall. The doubling behind each form is part of the drawing, not an accident of the press. For a room that needs one loud object and nothing else near it.",
+    images: [],
+    status: "available",
+  },
+  {
+    slug: "morse",
+    title: "Morse",
+    number: "08",
+    series: "Cipher",
+    year: 2026,
+    editionSize: 100,
+    basePrice: 180,
+    short: "A real message in Morse. We are not printing the translation.",
+    description:
+      "Eighteen lines of dots and dashes, set centred like a poem, saying something we are not going to write down here. Morse exists so a message survives a bad line, a storm and an operator who has never met you. Most people who hang this will never decode it. A few will sit down with a chart and work through it line by line, and those are the ones it was drawn for. Texture from across the room, language from close up.",
+    images: [],
+    status: "available",
+  },
 ];
 
 export const CURRENT_DROP_SLUG = "the-outlier";

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840">
+  <rect width="600" height="840" fill="#e8e8e5"/>
+
+  <!-- D. Flat stem left, one large arc right. -->
+  <path d="M72 201 H204 C256 201 287 247 287 312 V533 C287 598 256 644 204 644 H72 Z" fill="#111114"/>
+  <rect x="136" y="219" width="83" height="397" fill="#000000"/>
+  <rect x="147" y="269" width="51" height="313" fill="#e8e8e5"/>
+
+  <!-- O and T in the same square. The T is knocked out of the counter. -->
+  <rect x="325" y="198" width="215" height="448" rx="107" fill="#111114"/>
+  <rect x="394" y="247" width="88" height="392" fill="#000000"/>
+  <rect x="351" y="269" width="158" height="52" fill="#e8e8e5"/>
+  <rect x="405" y="321" width="58" height="263" fill="#e8e8e5"/>
+</svg>
