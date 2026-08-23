@@ -73,7 +73,7 @@ export default async function EditionPage({
           <Gallery
             images={edition.images}
             title={edition.title}
-            fallback={`/editions/${edition.slug}.svg`}
+            fallback={edition.artwork}
           />
         </div>
 

@@ -14,10 +14,19 @@ export interface Edition {
   /**
    * Photography paths in display order. The first image is the cover used
    * on the catalogue card. The full list powers the swipeable gallery on
-   * the product page. Empty array falls back to the SVG placeholder.
-   * Drop JPGs into public/editions/<slug>/ and list them here.
+   * the product page. An empty array falls back to `artwork`, then to the
+   * neutral upload slot. Files dropped into public/editions/<slug>/ are
+   * picked up automatically by lib/editions-server.ts, so this array stays
+   * empty in normal operation.
    */
   images: string[];
+  /**
+   * Optional drawn mock of the artwork, shown on the catalogue card and as
+   * the first gallery slide until photography exists. Editions without one
+   * show a neutral upload slot instead, so an empty folder never renders a
+   * broken image.
+   */
+  artwork?: string;
   status: EditionStatus;
 }
 
@@ -35,6 +44,7 @@ export const EDITIONS: Edition[] = [
     description:
       "Six columns, nine rows. Fifty three circles hold the line; one breaks it. The Outlier is a study in conformity and exception. Geometric, deliberate, quiet. For the room of someone who knows exactly which circle they are.",
     images: [],
+    artwork: "/editions/the-outlier.svg",
     status: "available",
   },
   {
@@ -50,6 +60,7 @@ export const EDITIONS: Edition[] = [
     description:
       "The only year Chevrolet built the split window coupé. Rendered in near black with gilded numerals. A portrait of restraint and horsepower in equal measure. For drivers, collectors, and everyone who keeps one particular garage in their head.",
     images: [],
+    artwork: "/editions/63-sting-ray.svg",
     status: "available",
   },
   {
@@ -64,6 +75,7 @@ export const EDITIONS: Edition[] = [
     description:
       "Layered line work in red and bone, drawn like the contour map of an imagined coast. Calm at the bottom, weather at the top. Hangs well in rooms where conversations happen.",
     images: [],
+    artwork: "/editions/red-waves.svg",
     status: "available",
   },
   {
@@ -78,6 +90,7 @@ export const EDITIONS: Edition[] = [
     description:
       "A cat, a giraffe, and the question every Berlin flatshare eventually asks out loud. Monochrome ink on cream. Proof that a serious wall can keep a sense of humour.",
     images: [],
+    artwork: "/editions/hast-du-gekackt.svg",
     status: "available",
   },
   {
@@ -92,6 +105,7 @@ export const EDITIONS: Edition[] = [
     description:
       "404 is what the browser shows when something a person made is no longer where it used to be. A dead link, a deleted draft, a project that quietly went offline. We took the format every browser uses and made it a print, black on black with the type laid sideways.",
     images: [],
+    artwork: "/editions/four-zero-four.svg",
     status: "available",
   },
   {
@@ -106,6 +120,7 @@ export const EDITIONS: Edition[] = [
     description:
       "A Queen of Spades with almost everything removed. The Q stays. The spade stays. The kiss is the rest of it, scanned from real lipstick on real paper, not drawn. Belongs in a hallway, above a dresser. Does not belong in a child's room.",
     images: [],
+    artwork: "/editions/femme-fatale.svg",
     status: "available",
   },
   {
@@ -117,9 +132,9 @@ export const EDITIONS: Edition[] = [
     editionSize: 100,
     basePrice: 180,
     short:
-      "Two words, two marks. DO is printed, IT is the space the ink left behind.",
+      "DO is printed. IT is the hole in the middle. The rest is on you.",
     description:
-      "D and O are printed. I and T are not. They are the counters, the holes the black leaves inside the letters, so the sheet reads DO from across the room and DO IT once you are close enough to see the gaps. Bold grotesque, near black on warm grey, nothing else on the paper. For the desk of someone who already knows what the task is.",
+      "The shortest instruction anybody has ever needed, printed as two marks. D and O carry the ink. I and T are the counters, the holes the black leaves inside them, so from the doorway the sheet says DO and up close it finishes the sentence. Nothing else is on the paper. No quote, no explanation, no small print, because every extra word is one more thing to read instead of starting. Hang it where you actually stall. Over the desk, beside the door, opposite the chair you sit in while you decide.",
     images: [],
     status: "available",
   },
@@ -131,9 +146,9 @@ export const EDITIONS: Edition[] = [
     year: 2025,
     editionSize: 100,
     basePrice: 180,
-    short: "Forty words in Morse. The key is not printed on the sheet.",
+    short: "Forty words about love, in Morse. The key is not on the sheet.",
     description:
-      "A full sentence set in Morse, dot by dot, in reading order, with no translation anywhere on the paper. It says: love is not a fire that burns everything down, it is a candle that teaches two souls how to survive the dark. The trick is not finding someone who lights the flame, but someone who protects it from the wind. Anyone else sees a pattern. The person you hang it for gets the sentence, from you or from an evening with a decoding table.",
+      "One complete sentence about love, set dot by dot in international Morse. Four hundred and thirty five marks, forty words, no translation on the paper and none on the back. A guest sees a pattern. The person you hang it for either gets the sentence from you, in your own voice, or spends an evening with a decoding table earning it. We are not printing the translation here, and that is the point of the piece. If you want to read it before you buy, write to hello@muuro.co and it goes to you only.",
     images: [],
     status: "available",
   },
@@ -149,14 +164,21 @@ export function getCurrentDrop(): Edition {
   return getEdition(CURRENT_DROP_SLUG) ?? EDITIONS[0];
 }
 
-/** Cover image for catalogue cards. Falls back to the SVG placeholder. */
+/**
+ * Card shown in place of the cover photo while an edition folder is still
+ * empty. It reads "upload 01.jpg", so the gap is an instruction rather
+ * than a hole in the page.
+ */
+export const PHOTO_SLOT = "/placeholders/photo-01.svg";
+
+/** Cover image for catalogue cards. Falls back to the artwork, then the slot. */
 export function coverImage(edition: Edition): string {
-  return edition.images[0] ?? `/editions/${edition.slug}.svg`;
+  return edition.images[0] ?? edition.artwork ?? PHOTO_SLOT;
 }
 
-/** Full gallery for the product page. Falls back to the SVG placeholder. */
+/** Full gallery for the product page. Falls back to the artwork, then the slot. */
 export function galleryImages(edition: Edition): string[] {
   return edition.images.length > 0
     ? edition.images
-    : [`/editions/${edition.slug}.svg`];
+    : [edition.artwork ?? PHOTO_SLOT];
 }

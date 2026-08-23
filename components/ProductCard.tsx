@@ -145,7 +145,9 @@ export default function ProductCard({ edition }: { edition: Edition }) {
               ) : null
             )}
           </div>
-        ) : hasPhotos ? (
+        ) : hasPhotos || !edition.artwork ? (
+          /* One photo, or no artwork at all, in which case this is the
+             upload slot card: a full bleed sheet that must not be framed. */
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={slides[0]}

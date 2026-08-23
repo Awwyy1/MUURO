@@ -49,12 +49,13 @@ comma is `--..--` and full stop is `.-.-.-`:
 The line breaks above are for this file only. On the print the code
 runs continuously and wraps wherever the grid wraps.
 
-The placeholder in `public/editions/shield-the-flame.svg` is that
-exact string, laid out at real Morse proportions (dash is three dots
-long, one dot of space inside a letter, three between letters, seven
-between words). One mark sits in amber: the dot that carries the E in
-`flame`. Optional on the print, but it gives the eye somewhere to
-land and it is the only hint that the pattern means something.
+Proportions for the print: a dash is three dots long, the space
+inside a letter is one dot, between letters three, between words
+seven. Keep them honest and the sheet decodes; fudge them and it
+becomes decoration.
+
+The listing on the site does not carry the translation. That is
+deliberate, so do not paste it into the product copy.
 
 ## Shot list for this edition
 

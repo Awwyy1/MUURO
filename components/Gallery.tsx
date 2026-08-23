@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { PHOTO_SLOT } from "@/lib/editions";
 import FramedArtwork from "./FramedArtwork";
 
 /**
@@ -8,9 +9,11 @@ import FramedArtwork from "./FramedArtwork";
  *
  * Like the catalogue card carousel, this is a translateX track: all
  * photos are rendered side by side and switching slides is a CSS
- * transform, with no per-swipe network or decode pause. The framed
- * placeholder shown when no real photography exists yet still gets the
- * "01" leading slide plus four "upload XX.jpg" slot cards.
+ * transform, with no per-swipe network or decode pause.
+ *
+ * With no photography yet, the track becomes the upload plan: the drawn
+ * artwork leads in a frame if the edition has one, otherwise the "01"
+ * cover slot does, and behind it sit the "upload XX.jpg" slot cards.
  */
 
 const PLACEHOLDER_SLOTS = [
@@ -36,9 +39,7 @@ export default function Gallery({
 }) {
   const isFallback = images.length === 0;
   const slides = isFallback
-    ? fallback
-      ? [fallback, ...PLACEHOLDER_SLOTS]
-      : []
+    ? [fallback ?? PHOTO_SLOT, ...PLACEHOLDER_SLOTS]
     : images;
 
   const [index, setIndex] = useState(0);
@@ -118,7 +119,7 @@ export default function Gallery({
                 key={i}
                 className="flex h-full w-full shrink-0 items-center justify-center"
               >
-                {isFallback && i === 0 ? (
+                {isFallback && i === 0 && fallback ? (
                   <div className="w-full max-w-[460px] p-6 md:p-10">
                     <FramedArtwork src={src} alt={title} />
                   </div>
