@@ -33,7 +33,7 @@ export default function EditionsPage() {
             href="/#newsletter"
             className="group flex min-h-[360px] flex-col items-center justify-center gap-5 border border-dashed border-edge px-8 text-center transition-colors hover:border-ink"
           >
-            <span className="label">Edition 07</span>
+            <span className="label">Edition 09</span>
             <span className="text-[18px] font-medium">Next drop in preparation</span>
             <span className="label underline underline-offset-4 transition-colors group-hover:text-ink">
               Notify me

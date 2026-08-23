@@ -71,3 +71,5 @@ in GitHub. The gallery rebuilds with whatever files remain.
 - [hast-du-gekackt](./hast-du-gekackt/)
 - [four-zero-four](./four-zero-four/)
 - [femme-fatale](./femme-fatale/)
+- [do-it](./do-it/)
+- [shield-the-flame](./shield-the-flame/)

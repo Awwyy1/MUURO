@@ -108,6 +108,35 @@ export const EDITIONS: Edition[] = [
     images: [],
     status: "available",
   },
+  {
+    slug: "do-it",
+    title: "DO IT",
+    number: "07",
+    series: "Statements",
+    year: 2025,
+    editionSize: 100,
+    basePrice: 180,
+    short:
+      "Two words, two marks. DO is printed, IT is the space the ink left behind.",
+    description:
+      "D and O are printed. I and T are not. They are the counters, the holes the black leaves inside the letters, so the sheet reads DO from across the room and DO IT once you are close enough to see the gaps. Bold grotesque, near black on warm grey, nothing else on the paper. For the desk of someone who already knows what the task is.",
+    images: [],
+    status: "available",
+  },
+  {
+    slug: "shield-the-flame",
+    title: "Shield the Flame",
+    number: "08",
+    series: "Cipher",
+    year: 2025,
+    editionSize: 100,
+    basePrice: 180,
+    short: "Forty words in Morse. The key is not printed on the sheet.",
+    description:
+      "A full sentence set in Morse, dot by dot, in reading order, with no translation anywhere on the paper. It says: love is not a fire that burns everything down, it is a candle that teaches two souls how to survive the dark. The trick is not finding someone who lights the flame, but someone who protects it from the wind. Anyone else sees a pattern. The person you hang it for gets the sentence, from you or from an evening with a decoding table.",
+    images: [],
+    status: "available",
+  },
 ];
 
 export const CURRENT_DROP_SLUG = "the-outlier";
